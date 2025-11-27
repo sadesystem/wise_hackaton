@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wise Youth Explorer</title>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Lucide icons as inline SVG components
+        const Home = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+        );
+
+        const TrendingUp = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+        );
+
+        const History = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        );
+
+        const Target = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" strokeWidth={2} />
+                <circle cx="12" cy="12" r="6" strokeWidth={2} />
+                <circle cx="12" cy="12" r="2" strokeWidth={2} />
+            </svg>
+        );
+
+        const Wallet = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+            </svg>
+        );
+
+        const Award = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+        );
+
+        const ArrowLeft = ({ className }) => (
+            <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+        );
+
+        const WiseYouthExplorer = () => {
+            const [currentView, setCurrentView] = useState('home');
+            const [selectedGoal, setSelectedGoal] = useState(null);
+
+            const balance = 45.50;
+            const weeklyLimit = 20.00;
+            const weeklySpent = 12.30;
+            const monthlyLimit = 80.00;
+            const monthlySpent = 32.80;
+
+            const savingsGoals = [
+                { id: 1, name: 'New Bike', target: 150, saved: 45.50, emoji: '🚲', color: 'bg-blue-400' },
+                { id: 2, name: 'Gaming Console', target: 300, saved: 0, emoji: '🎮', color: 'bg-purple-400' },
+                { id: 3, name: 'Art Supplies', target: 50, saved: 0, emoji: '🎨', color: 'bg-pink-400' }
+            ];
+
+            const recentTransactions = [
+                { id: 1, name: 'Ice Cream Shop', amount: -4.50, date: 'Today', emoji: '🍦', category: 'Food' },
+                { id: 2, name: 'Book Store', amount: -12.99, date: 'Yesterday', emoji: '📚', category: 'Shopping' },
+                { id: 3, name: 'Allowance', amount: +20.00, date: '3 days ago', emoji: '💰', category: 'Income' },
+                { id: 4, name: 'Movie Snacks', amount: -8.50, date: '5 days ago', emoji: '🍿', category: 'Food' },
+                { id: 5, name: 'Toy Store', amount: -15.20, date: '1 week ago', emoji: '🧸', category: 'Shopping' }
+            ];
+
+            const achievements = [
+                { id: 1, name: 'First Purchase', unlocked: true, emoji: '🎉' },
+                { id: 2, name: 'Saved £10', unlocked: true, emoji: '⭐' },
+                { id: 3, name: 'Smart Spender', unlocked: false, emoji: '🏆' },
+                { id: 4, name: 'Goal Saver', unlocked: false, emoji: '🎯' }
+            ];
+
+            const HomeView = () => (
+                <div className="flex flex-col h-full">
+                    <div className="bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-6 m-4 shadow-lg">
+                        <div className="text-white text-sm font-medium mb-2">Your Balance</div>
+                        <div className="text-white text-5xl font-bold mb-4">£{balance.toFixed(2)}</div>
+                        <div className="bg-white/20 backdrop-blur rounded-xl p-3">
+                            <div className="text-white text-xs mb-1">This Week</div>
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-white text-sm font-medium">£{weeklySpent.toFixed(2)} of £{weeklyLimit.toFixed(2)}</span>
+                                <span className="text-white text-xs">£{(weeklyLimit - weeklySpent).toFixed(2)} left</span>
+                            </div>
+                            <div className="bg-white/30 rounded-full h-2">
+                                <div 
+                                    className="bg-white rounded-full h-2 transition-all duration-500"
+                                    style={{ width: `${(weeklySpent / weeklyLimit) * 100}%` }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="px-4 mb-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <h2 className="text-xl font-bold text-gray-800">My Goals 🎯</h2>
+                        </div>
+                        <div className="space-y-3">
+                            {savingsGoals.slice(0, 2).map(goal => {
+                                const progress = (goal.saved / goal.target) * 100;
+                                return (
+                                    <button
+                                        key={goal.id}
+                                        onClick={() => {
+                                            setSelectedGoal(goal);
+                                            setCurrentView('goalDetail');
+                                        }}
+                                        className="w-full bg-white rounded-2xl p-4 shadow-md active:scale-95 transition-transform"
+                                    >
+                                        <div className="flex items-center justify-between mb-2">
+                                            <div className="flex items-center gap-3">
+                                                <div className="text-3xl">{goal.emoji}</div>
+                                                <div className="text-left">
+                                                    <div className="font-bold text-gray-800">{goal.name}</div>
+                                                    <div className="text-sm text-gray-500">£{goal.saved} of £{goal.target}</div>
+                                                </div>
+                                            </div>
+                                            <div className="text-right">
+                                                <div className="text-2xl font-bold text-gray-800">{Math.round(progress)}%</div>
+                                            </div>
+                                        </div>
+                                        <div className="bg-gray-200 rounded-full h-3">
+                                            <div 
+                                                className={`${goal.color} rounded-full h-3 transition-all duration-500`}
+                                                style={{ width: `${progress}%` }}
+                                            />
+                                        </div>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+                    <div className="px-4 mb-4">
+                        <h2 className="text-xl font-bold text-gray-800 mb-3">Quick Look 👀</h2>
+                        <div className="grid grid-cols-2 gap-3">
+                            <button
+                                onClick={() => setCurrentView('history')}
+                                className="bg-white rounded-2xl p-4 shadow-md active:scale-95 transition-transform"
+                            >
+                                <History className="w-8 h-8 text-purple-500 mb-2" />
+                                <div className="font-bold text-gray-800 text-sm">Recent Buys</div>
+                                <div className="text-xs text-gray-500">{recentTransactions.length} purchases</div>
+                            </button>
+                            <button
+                                onClick={() => setCurrentView('achievements')}
+                                className="bg-white rounded-2xl p-4 shadow-md active:scale-95 transition-transform"
+                            >
+                                <Award className="w-8 h-8 text-yellow-500 mb-2" />
+                                <div className="font-bold text-gray-800 text-sm">Achievements</div>
+                                <div className="text-xs text-gray-500">{achievements.filter(a => a.unlocked).length} unlocked</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const LimitsView = () => (
+                <div className="p-4">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">My Spending Limits 💳</h1>
+                    
+                    <div className="bg-white rounded-2xl p-5 shadow-md mb-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <div className="text-2xl">📅</div>
+                                <div className="font-bold text-gray-800">This Week</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-sm text-gray-500">Limit</div>
+                                <div className="font-bold text-gray-800">£{weeklyLimit.toFixed(2)}</div>
+                            </div>
+                        </div>
+                        <div className="bg-gray-200 rounded-full h-4 mb-2">
+                            <div 
+                                className="bg-gradient-to-r from-green-400 to-blue-500 rounded-full h-4 transition-all duration-500"
+                                style={{ width: `${(weeklySpent / weeklyLimit) * 100}%` }}
+                            />
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Spent: £{weeklySpent.toFixed(2)}</span>
+                            <span className="font-bold text-green-600">Left: £{(weeklyLimit - weeklySpent).toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-2xl p-5 shadow-md mb-4">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <div className="text-2xl">📆</div>
+                                <div className="font-bold text-gray-800">This Month</div>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-sm text-gray-500">Limit</div>
+                                <div className="font-bold text-gray-800">£{monthlyLimit.toFixed(2)}</div>
+                            </div>
+                        </div>
+                        <div className="bg-gray-200 rounded-full h-4 mb-2">
+                            <div 
+                                className="bg-gradient-to-r from-purple-400 to-pink-500 rounded-full h-4 transition-all duration-500"
+                                style={{ width: `${(monthlySpent / monthlyLimit) * 100}%` }}
+                            />
+                        </div>
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-600">Spent: £{monthlySpent.toFixed(2)}</span>
+                            <span className="font-bold text-green-600">Left: £{(monthlyLimit - monthlySpent).toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <div className="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200">
+                        <div className="text-3xl mb-2">💡</div>
+                        <div className="font-bold text-gray-800 mb-1">Good to know!</div>
+                        <div className="text-sm text-gray-600">
+                            Your parents set these limits to help you learn about money. If you need more, ask them nicely! 😊
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const HistoryView = () => (
+                <div className="p-4">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">My Purchases 🛍️</h1>
+                    
+                    <div className="space-y-3">
+                        {recentTransactions.map(transaction => (
+                            <div key={transaction.id} className="bg-white rounded-2xl p-4 shadow-md">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="text-3xl">{transaction.emoji}</div>
+                                        <div>
+                                            <div className="font-bold text-gray-800">{transaction.name}</div>
+                                            <div className="text-sm text-gray-500">{transaction.date}</div>
+                                        </div>
+                                    </div>
+                                    <div className={`text-xl font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-gray-800'}`}>
+                                        {transaction.amount > 0 ? '+' : ''}£{Math.abs(transaction.amount).toFixed(2)}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+
+            const GoalsView = () => (
+                <div className="p-4">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">Saving Goals 🎯</h1>
+                    
+                    <div className="space-y-4">
+                        {savingsGoals.map(goal => {
+                            const progress = (goal.saved / goal.target) * 100;
+                            return (
+                                <button
+                                    key={goal.id}
+                                    onClick={() => {
+                                        setSelectedGoal(goal);
+                                        setCurrentView('goalDetail');
+                                    }}
+                                    className="w-full bg-white rounded-2xl p-5 shadow-md active:scale-95 transition-transform"
+                                >
+                                    <div className="flex items-center justify-between mb-3">
+                                        <div className="flex items-center gap-3">
+                                            <div className="text-4xl">{goal.emoji}</div>
+                                            <div className="text-left">
+                                                <div className="font-bold text-gray-800 text-lg">{goal.name}</div>
+                                                <div className="text-sm text-gray-500">Target: £{goal.target}</div>
+                                            </div>
+                                        </div>
+                                        <div className="text-3xl font-bold text-gray-800">{Math.round(progress)}%</div>
+                                    </div>
+                                    <div className="bg-gray-200 rounded-full h-4 mb-2">
+                                        <div 
+                                            className={`${goal.color} rounded-full h-4 transition-all duration-500`}
+                                            style={{ width: `${progress}%` }}
+                                        />
+                                    </div>
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-gray-600">Saved: £{goal.saved.toFixed(2)}</span>
+                                        <span className="font-bold text-blue-600">Need: £{(goal.target - goal.saved).toFixed(2)}</span>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </div>
+
+                    <div className="bg-green-50 rounded-2xl p-4 border-2 border-green-200 mt-4">
+                        <div className="text-3xl mb-2">🌟</div>
+                        <div className="font-bold text-gray-800 mb-1">Keep saving!</div>
+                        <div className="text-sm text-gray-600">
+                            Every time you don't spend, you're closer to your goals. You've got this! 💪
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const GoalDetailView = () => {
+                if (!selectedGoal) return null;
+                const progress = (selectedGoal.saved / selectedGoal.target) * 100;
+                const remaining = selectedGoal.target - selectedGoal.saved;
+
+                return (
+                    <div className="p-4">
+                        <button 
+                            onClick={() => setCurrentView('goals')}
+                            className="mb-4 flex items-center gap-2 text-blue-600 font-medium"
+                        >
+                            <ArrowLeft className="w-5 h-5" />
+                            Back to Goals
+                        </button>
+
+                        <div className={`${selectedGoal.color} rounded-3xl p-6 mb-6 shadow-lg`}>
+                            <div className="text-6xl mb-3 text-center">{selectedGoal.emoji}</div>
+                            <h1 className="text-2xl font-bold text-white text-center mb-2">{selectedGoal.name}</h1>
+                            <div className="text-white text-center text-lg">Target: £{selectedGoal.target}</div>
+                        </div>
+
+                        <div className="bg-white rounded-2xl p-6 shadow-md mb-4">
+                            <div className="text-center mb-4">
+                                <div className="text-5xl font-bold text-gray-800 mb-1">£{selectedGoal.saved.toFixed(2)}</div>
+                                <div className="text-gray-500">Saved so far</div>
+                            </div>
+                            
+                            <div className="bg-gray-200 rounded-full h-6 mb-3">
+                                <div 
+                                    className={`${selectedGoal.color} rounded-full h-6 transition-all duration-500 flex items-center justify-center`}
+                                    style={{ width: `${progress}%` }}
+                                >
+                                    {progress > 20 && (
+                                        <span className="text-white text-sm font-bold">{Math.round(progress)}%</span>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <div className="text-2xl font-bold text-red-600">£{remaining.toFixed(2)}</div>
+                                    <div className="text-sm text-gray-500">Still to save</div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="text-2xl font-bold text-green-600">{Math.round(progress)}%</div>
+                                    <div className="text-sm text-gray-500">Complete</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-purple-50 rounded-2xl p-5 border-2 border-purple-200">
+                            <div className="text-3xl mb-2">💭</div>
+                            <div className="font-bold text-gray-800 mb-2">Did you know?</div>
+                            <div className="text-sm text-gray-600 mb-3">
+                                If you save £{(remaining / 4).toFixed(2)} each week, you'll reach your goal in about 4 weeks!
+                            </div>
+                            <div className="text-xs text-gray-500">
+                                Ask your parents about ways you can earn or save more money! 🌟
+                            </div>
+                        </div>
+                    </div>
+                );
+            };
+
+            const AchievementsView = () => (
+                <div className="p-4">
+                    <h1 className="text-2xl font-bold text-gray-800 mb-4">My Achievements 🏆</h1>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                        {achievements.map(achievement => (
+                            <div 
+                                key={achievement.id} 
+                                className={`rounded-2xl p-5 shadow-md text-center ${
+                                    achievement.unlocked 
+                                        ? 'bg-gradient-to-br from-yellow-400 to-orange-500' 
+                                        : 'bg-gray-100'
+                                }`}
+                            >
+                                <div className={`text-5xl mb-2 ${!achievement.unlocked && 'opacity-30 grayscale'}`}>
+                                    {achievement.emoji}
+                                </div>
+                                <div className={`font-bold ${achievement.unlocked ? 'text-white' : 'text-gray-400'}`}>
+                                    {achievement.name}
+                                </div>
+                                {achievement.unlocked && (
+                                    <div className="text-white text-xs mt-1">✓ Unlocked!</div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200 mt-6">
+                        <div className="text-3xl mb-2">🎮</div>
+                        <div className="font-bold text-gray-800 mb-1">Keep going!</div>
+                        <div className="text-sm text-gray-600">
+                            Unlock achievements by saving money, making smart choices, and reaching your goals!
+                        </div>
+                    </div>
+                </div>
+            );
+
+            const renderView = () => {
+                switch(currentView) {
+                    case 'home': return <HomeView />;
+                    case 'limits': return <LimitsView />;
+                    case 'history': return <HistoryView />;
+                    case 'goals': return <GoalsView />;
+                    case 'goalDetail': return <GoalDetailView />;
+                    case 'achievements': return <AchievementsView />;
+                    default: return <HomeView />;
+                }
+            };
+
+            return (
+                <div className="max-w-md mx-auto bg-gray-50 min-h-screen flex flex-col">
+                    <div className="bg-white shadow-sm p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                            <Wallet className="w-6 h-6 text-green-500" />
+                            <h1 className="text-xl font-bold text-gray-800">Youth Explorer</h1>
+                        </div>
+                        <div className="text-2xl">👋</div>
+                    </div>
+
+                    <div className="flex-1 overflow-y-auto pb-20">
+                        {renderView()}
+                    </div>
+
+                    <div className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-gray-200 px-2 py-3 flex justify-around shadow-lg">
+                        <button
+                            onClick={() => setCurrentView('home')}
+                            className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all ${
+                                currentView === 'home' ? 'bg-green-100' : ''
+                            }`}
+                        >
+                            <Home className={`w-6 h-6 ${currentView === 'home' ? 'text-green-600' : 'text-gray-400'}`} />
+                            <span className={`text-xs font-medium ${currentView === 'home' ? 'text-green-600' : 'text-gray-500'}`}>
+                                Home
+                            </span>
+                        </button>
+                        
+                        <button
+                            onClick={() => setCurrentView('limits')}
+                            className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all ${
+                                currentView === 'limits' ? 'bg-blue-100' : ''
+                            }`}
+                        >
+                            <TrendingUp className={`w-6 h-6 ${currentView === 'limits' ? 'text-blue-600' : 'text-gray-400'}`} />
+                            <span className={`text-xs font-medium ${currentView === 'limits' ? 'text-blue-600' : 'text-gray-500'}`}>
+                                Limits
+                            </span>
+                        </button>
+                        
+                        <button
+                            onClick={() => setCurrentView('history')}
+                            className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all ${
+                                currentView === 'history' ? 'bg-purple-100' : ''
+                            }`}
+                        >
+                            <History className={`w-6 h-6 ${currentView === 'history' ? 'text-purple-600' : 'text-gray-400'}`} />
+                            <span className={`text-xs font-medium ${currentView === 'history' ? 'text-purple-600' : 'text-gray-500'}`}>
+                                History
+                            </span>
+                        </button>
+                        
+                        <button
+                            onClick={() => setCurrentView('goals')}
+                            className={`flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all ${
+                                currentView === 'goals' ? 'bg-pink-100' : ''
+                            }`}
+                        >
+                            <Target className={`w-6 h-6 ${currentView === 'goals' ? 'text-pink-600' : 'text-gray-400'}`} />
+                            <span className={`text-xs font-medium ${currentView === 'goals' ? 'text-pink-600' : 'text-gray-500'}`}>
+                                Goals
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<WiseYouthExplorer />, document.getElementById('root'));
+    </script>
+</body>
+</html>
