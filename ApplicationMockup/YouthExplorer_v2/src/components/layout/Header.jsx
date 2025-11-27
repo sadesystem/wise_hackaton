@@ -1,7 +1,6 @@
-import React from 'react';
-import Wallet from '../icons/Wallet';
+import { Wallet } from '../icons/Wallet';
 
-const Header = () => {
+export const Header = () => {
     return (
         <div className="bg-white shadow-sm p-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -12,5 +11,3 @@ const Header = () => {
         </div>
     );
 };
-
-export default Header;
