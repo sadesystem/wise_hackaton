@@ -93,7 +93,8 @@
 
             const HomeView = () => (
                 <div className="flex flex-col h-full">
-                    <div className="bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-6 m-4 shadow-lg">
+                    <div className="rounded-3xl p-6 m-4 shadow-lg"
+                        style= {{backgroundColor: "#163300" }}>
                         <div className="text-white text-sm font-medium mb-2">Your Balance</div>
                         <div className="text-white text-5xl font-bold mb-4">£{balance.toFixed(2)}</div>
                         <div className="bg-white/20 backdrop-blur rounded-xl p-3">
@@ -192,8 +193,8 @@
                         </div>
                         <div className="bg-gray-200 rounded-full h-4 mb-2">
                             <div 
-                                className="bg-gradient-to-r from-green-400 to-blue-500 rounded-full h-4 transition-all duration-500"
-                                style={{ width: `${(weeklySpent / weeklyLimit) * 100}%` }}
+                                className="rounded-full h-4 transition-all duration-500"
+                                style={{ width: `${(weeklySpent / weeklyLimit) * 100}%`, backgroundColor: "#9FE870" }}
                             />
                         </div>
                         <div className="flex justify-between text-sm">
@@ -215,8 +216,8 @@
                         </div>
                         <div className="bg-gray-200 rounded-full h-4 mb-2">
                             <div 
-                                className="bg-gradient-to-r from-purple-400 to-pink-500 rounded-full h-4 transition-all duration-500"
-                                style={{ width: `${(monthlySpent / monthlyLimit) * 100}%` }}
+                                className="rounded-full h-4 transition-all duration-500"
+                                style={{ width: `${(monthlySpent / monthlyLimit) * 100}%`, backgroundColor: "#9FE870" }}
                             />
                         </div>
                         <div className="flex justify-between text-sm">
@@ -250,7 +251,7 @@
                                             <div className="text-sm text-gray-500">{transaction.date}</div>
                                         </div>
                                     </div>
-                                    <div className={`text-xl font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-gray-800'}`}>
+                                    <div className={`text-xl font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-red-800'}`}>
                                         {transaction.amount > 0 ? '+' : ''}£{Math.abs(transaction.amount).toFixed(2)}
                                     </div>
                                 </div>
