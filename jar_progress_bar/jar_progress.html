@@ -1,48 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./vars.css">
-  <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="./vars.css" />
+  <link rel="stylesheet" href="./style.css" />
 
   <style>
-    a,
-    button,
-    input,
-    select,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      border: none;
-      text-decoration: none;
-      background: none;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    menu, ol, ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
+    html, body {
       height: 100%;
       margin: 0;
     }
-
     body {
-      background: #e5e5e5;
+      background: #f3f4f6;
     }
-
     .center-shell {
       min-height: 100vh;
       display: flex;
@@ -50,65 +23,211 @@
       justify-content: center;
     }
   </style>
+
   <title>Goal Jar Tree View</title>
 </head>
 <body>
 <div class="center-shell">
-  <div class="goal-jar-tree-view">
-    <div class="device-device-frame">
-      <div class="device-device-frame-components-status-bar">
-        <div class="time">9:30</div>
-        <img class="right-icons" src="right-icons0.svg" />
-        <img class="camera-cutout" src="camera-cutout0.svg" />
-      </div>
-      <div class="device-device-frame-components-navigation">
-        <div class="home"></div>
-      </div>
+
+  <!-- ÜHINE TELEFONIRAAM -->
+  <div class="main-screen">
+    <!-- STATUS BAR -->
+    <div class="device-device-frame-components-status-bar">
+      <div class="time">9:30</div>
+      <img class="right-icons" src="right-icons0.svg" alt="status icons" />
+      <img class="camera-cutout" src="camera-cutout0.svg" alt="" />
     </div>
-    <img class="image-1" src="leaf_image_1.png" />
-    <div class="chip-button">
-      <div class="all">+5€</div>
+
+    <!-- HOME indikator -->
+    <div class="device-device-frame-components-navigation">
+      <div class="home"></div>
     </div>
-    <div class="chip-button2">
-      <div class="all2">+10€</div>
-    </div>
-    <div class="chip-button3">
-      <div class="all2">Custom</div>
-    </div>
-    <div class="button">
-      <div class="div">
-        <div class="div2">
-          <div class="div3">
-            <div class="div4">🎨</div>
-          </div>
-          <div class="div5">
-            <div class="div6">
-              <div class="art-supplies">
-                Art
-                <br />
-                Supplies
-              </div>
-            </div>
-            <div class="div7"></div>
-            <div class="div8">
-              <div class="_0">0€</div>
-            </div>
-          </div>
+
+    <!-- SCROLLITAV SISU -->
+    <div class="jar-content">
+
+      <!-- Ülemine oranž kaart (JS täidab päris andmetega) -->
+      <div class="jar-card">
+        <div class="jar-emoji" id="jarEmoji">🎨</div>
+        <div class="jar-text">
+          <div class="jar-title" id="jarTitle">Art Supplies</div>
+          <div class="jar-subtitle" id="jarSubtitle">Target: 50€</div>
         </div>
+        <div class="jar-amount" id="jarAmount">0€</div>
       </div>
+
+      <!-- Summa nupud -->
+      <div class="chip-row">
+        <button class="chip-button" data-add="5">+5€</button>
+        <button class="chip-button" data-add="10">+10€</button>
+        <button class="chip-button chip-outline" data-custom="true">Custom</button>
+      </div>
+
+      <!-- Puu / lehe pilt -->
+      <div class="jar-image-wrap">
+        <img class="jar-image" id="jarImage" src="leaf_0.png" alt="Savings tree" />
+      </div>
+
+      <!-- Alumine kollane nupp (näitab palju on jäänud) -->
+      <button class="primary-button" id="jarPrimaryButton">
+        15€ to go!
+      </button>
     </div>
-    <div class="primary-button">
-      <div class="next">15€ to go!</div>
+
+    <!-- ALUMINE NAV -->
+    <div class="bottom-nav">
+      <a href="../html/transactions.html" class="nav-item">
+        <img src="history_image.svg" class="nav-icon" alt="History" />
+        <div class="nav-label">History</div>
+      </a>
+
+      <a href="../html/main.html" class="nav-item">
+        <img src="home_image.svg" class="nav-icon" alt="Home" />
+        <div class="nav-label">Home</div>
+      </a>
+
+      <a href="../html/saving.html" class="nav-item">
+        <img src="savings_image.svg" class="nav-icon" alt="Savings" />
+        <div class="nav-label">Savings</div>
+      </a>
     </div>
-    <div class="bottom-nav-icons">
-      <div class="home2">History</div>
-    </div>
-    <img class="vector" src="history_image.svg" />
-    <img class="savings" src="savings_image.svg" />
-    <div class="home3">Home</div>
-    <div class="savings2">Savings</div>
-    <img class="home4" src="home_image.svg" />
-  </div>
-</div>
+
+  </div><!-- /main-screen -->
+
+</div><!-- /center-shell -->
+
+<script>
+  const STORAGE_KEY = "jarsData";
+
+  // loe id URL-ist (?id=1)
+  function getJarIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    return id ? parseInt(id, 10) : null;
+  }
+
+  async function getJarsData() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    // kui localStorage tühi, loe algne JSON ja salvesta
+    const response = await fetch("../data/jars.json");
+    const data = await response.json();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return data;
+  }
+
+  function saveJarsData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function chooseImageSrc(percent) {
+    if (percent <= 0) {
+      return "../assets/images/12.png";    // 0%
+    } else if (percent < 50) {
+      return "../assets/images/10.png";    // 0–50%
+    } else if (percent < 100) {
+      return "../assets/images/9.png";    // 50–100%
+    } else {
+      return "../assets/images/8.png";    // 100% (õitsev)
+    }
+  }
+
+  function updateJarUI(jar) {
+    const titleEl = document.getElementById("jarTitle");
+    const subtitleEl = document.getElementById("jarSubtitle");
+    const amountEl = document.getElementById("jarAmount");
+    const primaryBtn = document.getElementById("jarPrimaryButton");
+    const imageEl = document.getElementById("jarImage");
+    const emojiEl = document.getElementById("jarEmoji");
+
+    const goal = jar.goal || 0;
+    const current = jar.current || 0;
+    const percent = goal > 0 ? Math.min(100, (current / goal) * 100) : 0;
+    const remaining = Math.max(0, goal - current);
+
+    titleEl.textContent = jar.name || "Goal";
+    subtitleEl.textContent = `Target: ${goal.toFixed(2)}€`;
+    amountEl.textContent = `${current.toFixed(2)}€`;
+
+    if (remaining <= 0) {
+      primaryBtn.textContent = "Goal reached! 🎉";
+    } else {
+      primaryBtn.textContent = `${remaining.toFixed(2)}€ to go!`;
+    }
+
+    // vali pilt protsendi järgi
+    imageEl.src = chooseImageSrc(percent);
+
+    // lihtne emoji loogika (soovi korral)
+    if (percent >= 100) {
+      emojiEl.textContent = "🌸";
+    } else if (percent >= 50) {
+      emojiEl.textContent = "🌿";
+    } else if (percent > 0) {
+      emojiEl.textContent = "🌱";
+    } else {
+      emojiEl.textContent = "🌰";
+    }
+  }
+
+  async function initJarPage() {
+    const data = await getJarsData();
+    let jarId = getJarIdFromUrl();
+
+    // kui url-is pole id-d, võta esimene jar
+    let jar = null;
+    if (jarId != null) {
+      jar = data.jars.find(j => j.id === jarId);
+    }
+    if (!jar) {
+      jar = data.jars[0];
+      jarId = jar.id;
+    }
+
+    updateJarUI(jar);
+
+    // nupud
+    const chipButtons = document.querySelectorAll(".chip-button");
+
+    chipButtons.forEach(btn => {
+      const addAmount = btn.dataset.add;
+      const isCustom = btn.dataset.custom === "true";
+
+      if (addAmount) {
+        const value = parseFloat(addAmount);
+        btn.addEventListener("click", () => {
+          jar.current = (jar.current || 0) + value;
+          // ära lase üle eesmärgi (soovi korral)
+          if (jar.current > jar.goal) {
+            jar.current = jar.goal;
+          }
+          saveJarsData(data);
+          updateJarUI(jar);
+        });
+      } else if (isCustom) {
+        btn.addEventListener("click", () => {
+          const input = prompt("How much do you want to add? (€)");
+          if (!input) return;
+          const value = parseFloat(input.replace(",", "."));
+          if (isNaN(value) || value <= 0) {
+            alert("Please enter a valid positive number.");
+            return;
+          }
+          jar.current = (jar.current || 0) + value;
+          if (jar.current > jar.goal) {
+            jar.current = jar.goal;
+          }
+          saveJarsData(data);
+          updateJarUI(jar);
+        });
+      }
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", initJarPage);
+</script>
+
 </body>
 </html>
