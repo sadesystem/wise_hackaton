@@ -26,6 +26,33 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* Fix percentage positioning */
+    .div8 {
+      background: rgba(0, 0, 0, 0);
+      width: 72.9px;
+      height: 60.63px;
+      position: absolute;
+      left: 284px !important;  /* Move it to the right */
+      top: 12px !important;    /* Align with icon */
+    }
+
+    /* Make navigation clickable */
+    .bottom-nav-icons,
+    .vector,
+    .savings,
+    .home3,
+    .savings2,
+    .home4 {
+      cursor: pointer;
+    }
+
+    /* Add hover effect */
+    .vector:hover,
+    .savings:hover,
+    .home4:hover {
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -50,7 +77,7 @@
     <div class="chip-button2"><div class="all2">+10€</div></div>
     <div class="chip-button3"><div class="all2">Custom</div></div>
 
-    <!-- THE GOAL CARD STRUCTURE THAT WAS MISSING -->
+    <!-- Goal Card Structure -->
     <div class="button">
       <div class="div">
         <div class="div2">
@@ -75,15 +102,17 @@
       <div class="next">Keep going!</div>
     </div>
 
-    <!-- Bottom nav -->
-    <div class="bottom-nav-icons">
+    <!-- Bottom nav - Made clickable -->
+    <div class="bottom-nav-icons" onclick="window.location.href='../html/transactions.html'">
       <div class="home2">History</div>
     </div>
-    <img class="vector" src="history_image.svg" />
-    <img class="savings" src="savings_image.svg" />
-    <div class="home3">Home</div>
-    <div class="savings2">Savings</div>
-    <img class="home4" src="home_image.svg" />
+    <img class="vector" src="history_image.svg" onclick="window.location.href='../html/transactions.html'" />
+
+    <img class="savings" src="savings_image.svg" onclick="window.location.href='../html/saving.html'" />
+    <div class="savings2" onclick="window.location.href='../html/saving.html'">Savings</div>
+
+    <img class="home4" src="home_image.svg" onclick="window.location.href='../html/main.html'" />
+    <div class="home3" onclick="window.location.href='../html/main.html'">Home</div>
   </div>
 </div>
 
@@ -98,6 +127,8 @@
 
     if (!jarId) {
       console.error("No jar ID provided in URL");
+      // Redirect back to savings page if no ID
+      window.location.href = '../html/saving.html';
       return;
     }
 
@@ -108,13 +139,14 @@
 
       if (!jar) {
         console.error("Jar not found with ID:", jarId);
+        window.location.href = '../html/saving.html';
         return;
       }
 
       const percent = ((jar.current / jar.goal) * 100).toFixed(0);
       const icon = jar.name.includes("art") ? "🎨" : "🚲";
 
-      // Now these elements exist!
+      // Update the display
       document.querySelector('.div4').textContent = icon;
       document.querySelector('.art-supplies').textContent = jar.name;
       document.querySelector('._0').textContent = `${percent}%`;
@@ -126,7 +158,16 @@
     }
   }
 
+  // Update the time
+  function updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    document.querySelector('.time').textContent = `${hours}:${minutes}`;
+  }
+
   loadGoalDetail();
+  updateTime();
 </script>
 </body>
 </html>
