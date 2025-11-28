@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="UTF-8" />
+  <title>Money App – Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+
+  <main class="content">
+    <!-- tervitus + avatar -->
+    <section class="top-row">
+      <div class="greeting">
+        <h1>Hi, Bob !</h1>
+      </div>
+      <div class="avatar-wrapper">
+        <img src="img/avatar.png" alt="User avatar" class="avatar-img" />
+      </div>
+    </section>
+
+    <!-- suur balansikaart -->
+    <section class="card balance-card">
+      <div class="balance-left">
+        <img src="img/eu-flag.png" alt="Euro flag" class="currency-icon" />
+      </div>
+      <div class="balance-main">
+        <div class="balance-value">45.84</div>
+        <button class="currency-pill" type="button">
+          EUR <span class="currency-name">Euro</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Limits pealkiri -->
+    <h2 class="limits-heading">Limits</h2>
+
+    <!-- Limits kaart -->
+    <section class="card limits-card">
+      <!-- Daily -->
+      <div class="limit-block">
+        <div class="limit-label">Daily</div>
+        <div class="limit-row">
+          <img src="img/warning-yellow.png"
+               alt="Daily warning"
+               class="limit-icon" />
+          <span class="limit-amount">12.41 EUR</span>
+        </div>
+        <div class="progressbar">
+          <div class="progress-fill progress-daily"></div>
+        </div>
+      </div>
+
+      <!-- Monthly -->
+          <h2 class="limits-heading">Limits</h2>
+
+    <!-- Limits kaart -->
+    <section class="card limits-card">
+      <!-- Daily -->
+      <div class="limit-block">
+        <div class="limit-label">Daily</div>
+        <div class="limit-row">
+          <img src="img/warning-yellow.png"
+               alt="Daily warning"
+               class="limit-icon" />
+          <!-- data-max = sinu päevane limiit (muuda number enda järgi) -->
+          <span class="limit-amount" id="dailyAmount" data-max="20">
+            12.41 EUR
+          </span>
+        </div>
+        <div class="progressbar">
+          <div class="progress-fill progress-daily" id="dailyFill"></div>
+        </div>
+      </div>
+
+      <!-- Monthly -->
+      <div class="limit-block">
+        <div class="limit-label">Monthly</div>
+        <div class="limit-row">
+          <img src="img/warning-red.png"
+               alt="Monthly limit exceeded"
+               class="limit-icon" />
+          <!-- tekst: kulutatud / limiit -->
+          <span class="limit-amount" id="monthlyAmount">
+            45.79 / 50 EUR
+          </span>
+        </div>
+        <div class="progressbar">
+          <div class="progress-fill progress-monthly" id="monthlyFill"></div>
+        </div>
+      </div>
+    </section>
+
+  <!-- alumine navibar -->
+  <nav class="tabbar">
+    <button class="tab-button" data-tab="history">
+      <img src="img/history.png" alt="History" class="tab-icon-img" />
+      <span class="tab-label">History</span>
+    </button>
+
+    <button class="tab-button tab-active" data-tab="home">
+      <img src="img/home.png" alt="Home" class="tab-icon-img" />
+      <span class="tab-label">Home</span>
+    </button>
+
+    <button class="tab-button" data-tab="savings">
+      <img src="img/savings.png" alt="Savings" class="tab-icon-img" />
+      <span class="tab-label">Savings</span>
+    </button>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

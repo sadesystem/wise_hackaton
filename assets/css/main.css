@@ -1,0 +1,236 @@
+/* üldine reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+}
+
+/* telefoniraam */
+
+.app {
+  background: #ffffff;
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.12);
+}
+
+/* status bar */
+
+.status-bar {
+  height: 36px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+/* sisu */
+
+.content {
+  flex: 1;
+  padding: 16px 16px 80px;
+  overflow-y: auto;
+}
+
+/* tervitus + avatar */
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.greeting h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.avatar-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* kaardid */
+
+.card {
+  border-radius: 24px;
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+/* balansikaart */
+
+.balance-card {
+  background: #ffcba3;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.currency-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.balance-main {
+  flex: 1;
+}
+
+.balance-value {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.currency-pill {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: #b7f0ff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.currency-name {
+  margin-left: 4px;
+}
+
+/* Limits */
+
+.limits-heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.limits-card {
+  background: #ffd6f1;
+}
+
+.limit-block + .limit-block {
+  margin-top: 18px;
+}
+
+.limit-label {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.limit-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.limit-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.limit-amount {
+  font-size: 13px;
+}
+
+/* progress */
+
+.progressbar {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+/* pane laiused vastavalt oma limiitidele */
+.progress-daily {
+  width: 40%;
+  background: #f3b71c;
+}
+
+.progress-monthly {
+  width: 90%;
+  background: #ff4f61;
+}
+
+/* alumine tabbar */
+
+.tabbar {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 390px;
+  background: #ffffff;
+  border-top: 1px solid #e4e4e4;
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 0 10px;
+}
+
+.tab-button {
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+.tab-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.tab-label {
+  font-size: 11px;
+}
+
+.tab-active .tab-label {
+  color: #0ab26b;
+  font-weight: 600;
+}
+
+.tab-active .tab-icon-img {
+  filter: drop-shadow(0 0 2px rgba(10, 178, 107, 0.5));
+}
