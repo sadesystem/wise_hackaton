@@ -7,37 +7,53 @@
   <link rel="stylesheet" href="./vars.css">
   <link rel="stylesheet" href="./style.css">
 
-
   <style>
-   a,
-   button,
-   input,
-   select,
-   h1,
-   h2,
-   h3,
-   h4,
-   h5,
-   * {
-       box-sizing: border-box;
-       margin: 0;
-       padding: 0;
-       border: none;
-       text-decoration: none;
-       background: none;
+    a,
+    button,
+    input,
+    select,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: none;
+      text-decoration: none;
+      background: none;
+      -webkit-font-smoothing: antialiased;
+    }
 
-       -webkit-font-smoothing: antialiased;
-   }
+    menu, ol, ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
 
-   menu, ol, ul {
-       list-style-type: none;
-       margin: 0;
-       padding: 0;
-   }
-   </style>
-  <title>Document</title>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: #e5e5e5;
+    }
+
+    .center-shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <title>Goal Jar Tree View</title>
 </head>
 <body>
+<div class="center-shell">
   <div class="goal-jar-tree-view">
     <div class="device-device-frame">
       <div class="device-device-frame-components-status-bar">
@@ -84,24 +100,15 @@
     <div class="primary-button">
       <div class="next">15€ to go!</div>
     </div>
-    <div class="bottom-nav">
-
-      <a href="../html/transactions.html" class="nav-item">
-        <img src="history_image.svg" class="nav-icon">
-        <div class="nav-label">History</div>
-      </a>
-
-      <a href="../html/main.html" class="nav-item">
-        <img src="home_image.svg" class="nav-icon">
-        <div class="nav-label">Home</div>
-      </a>
-
-      <a href="saving.html" class="nav-item">
-        <img src="savings_image.svg" class="nav-icon">
-        <div class="nav-label">Savings</div>
-      </a>
-
+    <div class="bottom-nav-icons">
+      <div class="home2">History</div>
     </div>
-
+    <img class="vector" src="history_image.svg" />
+    <img class="savings" src="savings_image.svg" />
+    <div class="home3">Home</div>
+    <div class="savings2">Savings</div>
+    <img class="home4" src="home_image.svg" />
+  </div>
+</div>
 </body>
 </html>
