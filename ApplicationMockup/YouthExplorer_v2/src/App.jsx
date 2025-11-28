@@ -13,13 +13,41 @@ export default function App() {
     const [currentView, setCurrentView] = useState('home');
     const [selectedGoal, setSelectedGoal] = useState(null);
 
+    const [savingsGoals, setSavingsGoals] = useState(mockData.savingsGoals);
+
+    const handleAddGoal = (newGoal) => {
+        const goalWithId = {
+            ...newGoal,
+            id: Date.now()
+        };
+        setSavingsGoals([...savingsGoals, goalWithId]);
+    };
+
+    const handleAddMoney = (goalId, amount) => {
+        setSavingsGoals(goals =>
+            goals.map(goal =>
+                goal.id === goalId
+                    ? { ...goal, saved: goal.saved + amount }
+                    : goal
+            )
+        );
+
+        if (selectedGoal && selectedGoal.id === goalId) {
+            setSelectedGoal(goal => ({
+                ...goal,
+                saved: goal.saved + amount
+            }));
+        }
+    };
+
     const renderView = () => {
         switch(currentView) {
             case 'home':
                 return <HomeView
                     {...mockData}
+                    savingsGoals={savingsGoals}
                     setCurrentView={setCurrentView}
-                    setSelectedGoal={setSelectedGoal}  // ADD THIS
+                    setSelectedGoal={setSelectedGoal}
                 />;
             case 'limits':
                 return <LimitsView {...mockData} />;
@@ -28,21 +56,25 @@ export default function App() {
             case 'goals':
                 return <GoalsView
                     {...mockData}
+                    savingsGoals={savingsGoals}
                     setCurrentView={setCurrentView}
-                    setSelectedGoal={setSelectedGoal}  // ADD THIS
+                    setSelectedGoal={setSelectedGoal}
+                    onAddGoal={handleAddGoal}
                 />;
             case 'goalDetail':
                 return <GoalDetailView
-                    selectedGoal={selectedGoal}  // Change from 'goal' to 'selectedGoal'
+                    selectedGoal={selectedGoal}
                     setCurrentView={setCurrentView}
+                    onAddMoney={handleAddMoney}
                 />;
             case 'achievements':
                 return <AchievementsView {...mockData} />;
             default:
                 return <HomeView
                     {...mockData}
+                    savingsGoals={savingsGoals}
                     setCurrentView={setCurrentView}
-                    setSelectedGoal={setSelectedGoal}  // ADD THIS
+                    setSelectedGoal={setSelectedGoal}
                 />;
         }
     };

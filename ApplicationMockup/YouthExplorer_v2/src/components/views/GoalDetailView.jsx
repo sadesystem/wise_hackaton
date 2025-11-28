@@ -1,9 +1,17 @@
+import { useState } from 'react';
+import { ArrowLeft} from '../icons/ArrowLeft';
+import { Coins } from '../icons/Coins';
+import { AddMoneyModal } from '../modals/AddMoneyModal';
+
 export const GoalDetailView = ({
     setCurrentView,
     selectedGoal,
+    onAddMoney
 
 }) => {
+
     if (!selectedGoal) return null;
+    const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
     const progress = (selectedGoal.saved / selectedGoal.target) * 100;
     const remaining = selectedGoal.target - selectedGoal.saved;
 return (
@@ -50,6 +58,13 @@ return (
                         <div className="text-sm text-gray-500">Complete</div>
                     </div>
                 </div>
+                <button
+                    onClick={() => setShowAddMoneyModal(true)}
+                    className="w-full bg-emerald-600 text-white rounded-xl p-4 font-bold flex items-center justify-center gap-2 active:scale-95 transition-transform mt-4"
+                >
+                    <Coins className="w-5 h-5"/>
+                    Add Money to Goal
+                </button>
             </div>
 
             <div className="bg-purple-50 rounded-2xl p-5 border-2 border-purple-200">
@@ -62,6 +77,16 @@ return (
                     Ask your parents about ways you can earn or save more money! 🌟
                 </div>
             </div>
+            {showAddMoneyModal && (
+                <AddMoneyModal
+                    goal={selectedGoal}
+                    onClose={() => setShowAddMoneyModal(false)}
+                    onSave={(amount) => {
+                        onAddMoney(selectedGoal.id, amount);
+                        setShowAddMoneyModal(false);
+                    }}
+                />
+            )}
         </div>
     </div>
 );

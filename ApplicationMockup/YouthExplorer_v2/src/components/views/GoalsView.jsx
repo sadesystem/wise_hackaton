@@ -1,15 +1,29 @@
+import { useState } from 'react';
+import { Plus } from '../icons/Plus';
+import { AddGoalModal } from '../modals/AddGoalModal';
+
+
 export const GoalsView = ({
     savingsGoals,
     setCurrentView,
     setSelectedGoal,
+    onAddGoal
 
 }) => {
+    const [showAddModal, setShowAddModal] = useState(false);
     return (
         <div className="flex flex-col h-full">
 
             <div className="p-4">
-                <h1 className="text-2xl font-bold text-gray-800 mb-4">Saving Goals 🎯</h1>
-
+                <div className="flex justify-between items-center mb-4">
+                    <h1 className="text-2xl font-bold text-gray-800">Saving Goals 🎯</h1>
+                    <button
+                        onClick={() => setShowAddModal(true)}
+                        className="bg-emerald-600 text-white rounded-full p-3 shadow-lg active:scale-95 transition-transform"
+                    >
+                        <Plus className="w-6 h-6"/>
+                    </button>
+                </div>
                 <div className="space-y-4">
                     {savingsGoals.map(goal => {
                         const progress = (goal.saved / goal.target) * 100;
@@ -55,7 +69,16 @@ export const GoalsView = ({
                         Every time you don't spend, you're closer to your goals. You've got this! 💪
                     </div>
                 </div>
+                {showAddModal && (
+                    <AddGoalModal
+                        onClose={() => setShowAddModal(false)}
+                        onSave={(newGoal) => {
+                            onAddGoal(newGoal);
+                            setShowAddModal(false);
+                        }}
+                    />
+                )}
             </div>
         </div>
     )
-            }
+}
