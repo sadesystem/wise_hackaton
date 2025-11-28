@@ -14,6 +14,8 @@ export default function App() {
     const [selectedGoal, setSelectedGoal] = useState(null);
 
     const [savingsGoals, setSavingsGoals] = useState(mockData.savingsGoals);
+    const [balance, setBalance] = useState(mockData.balance);
+
 
     const handleAddGoal = (newGoal) => {
         const goalWithId = {
@@ -24,6 +26,13 @@ export default function App() {
     };
 
     const handleAddMoney = (goalId, amount) => {
+        // Check if user has enough balance
+        if (amount > balance) {
+            alert("Not enough balance!");
+            return;
+        }
+
+        // Update goal
         setSavingsGoals(goals =>
             goals.map(goal =>
                 goal.id === goalId
@@ -32,6 +41,10 @@ export default function App() {
             )
         );
 
+        // Deduct from balance
+        setBalance(prevBalance => prevBalance - amount);
+
+        // Update selected goal if needed
         if (selectedGoal && selectedGoal.id === goalId) {
             setSelectedGoal(goal => ({
                 ...goal,
@@ -45,6 +58,7 @@ export default function App() {
             case 'home':
                 return <HomeView
                     {...mockData}
+                    balance={balance}
                     savingsGoals={savingsGoals}
                     setCurrentView={setCurrentView}
                     setSelectedGoal={setSelectedGoal}
@@ -66,12 +80,14 @@ export default function App() {
                     selectedGoal={selectedGoal}
                     setCurrentView={setCurrentView}
                     onAddMoney={handleAddMoney}
+                    balance={balance}
                 />;
             case 'achievements':
                 return <AchievementsView {...mockData} />;
             default:
                 return <HomeView
                     {...mockData}
+                    balance={balance}
                     savingsGoals={savingsGoals}
                     setCurrentView={setCurrentView}
                     setSelectedGoal={setSelectedGoal}

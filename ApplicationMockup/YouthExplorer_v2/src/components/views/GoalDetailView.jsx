@@ -6,7 +6,8 @@ import { AddMoneyModal } from '../modals/AddMoneyModal';
 export const GoalDetailView = ({
     setCurrentView,
     selectedGoal,
-    onAddMoney
+    onAddMoney,
+    balance
 
 }) => {
 
@@ -85,6 +86,7 @@ return (
                         onAddMoney(selectedGoal.id, amount);
                         setShowAddMoneyModal(false);
                     }}
+                    balance={balance}
                 />
             )}
         </div>
