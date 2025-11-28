@@ -10,19 +10,20 @@ export const HomeView = ({
     return (
         <div className="flex flex-col h-full">
             {/* Balance Card */}
-            <div className="bg-gradient-to-br from-green-400 to-blue-500 rounded-3xl p-6 m-4 shadow-lg">
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl p-6 m-4 shadow-lg">
                 <div className="text-white text-sm font-medium mb-2">Your Balance</div>
                 <div className="text-white text-5xl font-bold mb-4">£{balance.toFixed(2)}</div>
                 <div className="bg-white/20 backdrop-blur rounded-xl p-3">
                     <div className="text-white text-xs mb-1">This Week</div>
                     <div className="flex items-center justify-between mb-2">
-                        <span className="text-white text-sm font-medium">£{weeklySpent.toFixed(2)} of £{weeklyLimit.toFixed(2)}</span>
+                        <span
+                            className="text-white text-sm font-medium">£{weeklySpent.toFixed(2)} of £{weeklyLimit.toFixed(2)}</span>
                         <span className="text-white text-xs">£{(weeklyLimit - weeklySpent).toFixed(2)} left</span>
                     </div>
                     <div className="bg-white/30 rounded-full h-2">
                         <div
                             className="bg-white rounded-full h-2 transition-all duration-500"
-                            style={{ width: `${(weeklySpent / weeklyLimit) * 100}%` }}
+                            style={{width: `${(weeklySpent / weeklyLimit) * 100}%`}}
                         />
                     </div>
                 </div>
@@ -60,7 +61,7 @@ export const HomeView = ({
                                 <div className="bg-gray-200 rounded-full h-3">
                                     <div
                                         className={`${goal.color} rounded-full h-3 transition-all duration-500`}
-                                        style={{ width: `${progress}%` }}
+                                        style={{width: `${progress}%`}}
                                     />
                                 </div>
                             </button>
