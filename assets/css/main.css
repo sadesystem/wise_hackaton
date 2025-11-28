@@ -133,7 +133,7 @@ body {
   flex-shrink: 0;
   position: relative;
 }
-._45-84 {
+.balance {
   color: #000000;
   text-align: left;
   font-family: "Inter-SemiBold", sans-serif;
@@ -170,7 +170,7 @@ body {
   flex-direction: row;
   gap: 8px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: 101px;
   position: absolute;
   left: 146px;
@@ -178,7 +178,7 @@ body {
 }
 .gbp {
   color: var(--content-primary, #0e0f0c);
-  text-align: left;
+  text-align: center;
   font-family: var(--body-large-font-family, "Inter-Regular", sans-serif);
   font-size: var(--body-large-font-size, 16px);
   line-height: var(--body-large-line-height, 24px);

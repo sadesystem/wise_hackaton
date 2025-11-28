@@ -10,7 +10,8 @@
       "id": 2,
       "name": "new bike",
       "goal": 104.5,
-      "current": 45.5
+      "current": 45.5,
+      "icon": "\uD83C\uDFAF"
     }
   ]
 }
