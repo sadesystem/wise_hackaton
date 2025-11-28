@@ -597,3 +597,7 @@
   text-align: center;
 }
 
+.bottom-nav a {
+    text-decoration: none;
+    color: inherit;
+}
