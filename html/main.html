@@ -1,116 +1,122 @@
 <!DOCTYPE html>
-<html lang="et">
-<head>
-  <meta charset="UTF-8" />
-  <title>Money App – Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<div class="app">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title>Mobile App Mockup</title>
+  </head>
+  <body>
+    <div class="app-wrapper">
 
-  <main class="content">
-    <!-- tervitus + avatar -->
-    <section class="top-row">
-      <div class="greeting">
-        <h1>Hi, Bob !</h1>
-      </div>
-      <div class="avatar-wrapper">
-        <img src="img/avatar.png" alt="User avatar" class="avatar-img" />
-      </div>
-    </section>
+      <!-- Your mockup container -->
+      <div class="main-screen">
 
-    <!-- suur balansikaart -->
-    <section class="card balance-card">
-      <div class="balance-left">
-        <img src="img/eu-flag.png" alt="Euro flag" class="currency-icon" />
-      </div>
-      <div class="balance-main">
-        <div class="balance-value">45.84</div>
-        <button class="currency-pill" type="button">
-          EUR <span class="currency-name">Euro</span>
-        </button>
-      </div>
-    </section>
+        <!-- Your full HTML content EXACTLY as you provided -->
+        <div
+          class="device-device-frame"
+          style="
+            background: url(main-screen.png) center;
+            background-size: cover;
+            background-repeat: no-repeat;
+          "
+        >
+          <div class="device-device-frame-components-status-bar">
+            <div class="time">9:30</div>
+            <img class="right-icons" src="../assets/images/right-icons0.svg" />
+            <img class="camera-cutout" src="../assets/images/camera-cutout0.svg" />
+          </div>
+          <div class="device-device-frame-components-navigation">
+            <div class="home"></div>
+          </div>
 
-    <!-- Limits pealkiri -->
-    <h2 class="limits-heading">Limits</h2>
+          <div class="bottom-nav">
+  
+        <div class="nav-item">
+            <img src="../assets/images/vector0.svg" class="nav-icon">
+            <div class="nav-label">History</div>
+          </div>
 
-    <!-- Limits kaart -->
-    <section class="card limits-card">
-      <!-- Daily -->
-      <div class="limit-block">
-        <div class="limit-label">Daily</div>
-        <div class="limit-row">
-          <img src="img/warning-yellow.png"
-               alt="Daily warning"
-               class="limit-icon" />
-          <span class="limit-amount">12.41 EUR</span>
+          <div class="nav-item">
+            <img src="../assets/images/home3.svg" class="nav-icon">
+            <div class="nav-label">Home</div>
+          </div>
+
+          <div class="nav-item">
+            <img src="../assets/images/savings0.svg" class="nav-icon">
+            <div class="nav-label">Savings</div>
+          </div>
+
         </div>
-        <div class="progressbar">
-          <div class="progress-fill progress-daily"></div>
         </div>
+
+        <div class="card-buttons">
+          <div class="frame-51">
+            <div class="frame-50"></div>
+          </div>
+        </div>
+
+        <div class="_45-84">45.84</div>
+
+        <div class="europe">
+          <img class="clip-path-group" src="../assets/images/clip-path-group0.svg" />
+        </div>
+
+        <img class="vector" src="../assets/images/vector0.svg" />
+
+        <div class="country-options">
+          <div class="gbp">EUR</div>
+          <div class="british">Euro</div>
+        </div>
+
+        <div class="_3-d-avatars-26">
+          <img class="avatars-3-d-avatar-26" src="../assets/images/avatars-3-d-avatar-260.png" />
+        </div>
+
+        <div class="hi-bob">Hi, Bob !</div>
+        <div class="limits">Limits</div>
+
+        
+
+        <div class="card-buttons2"></div>
+
+        <div class="progress-bar-type-1-error">
+          <div class="icons">
+            <div class="icons2">
+              <img class="close-circle" src="../assets/images/close-circle0.svg" />
+            </div>
+          </div>
+          <div class="info-indicator">
+            <div class="information">
+              <div class="_45-79-50-eur">45.79 / 50 EUR</div>
+              <div class="status"></div>
+            </div>
+            <div class="progress-indicatior">
+              <div class="indicator"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="daily">Daily</div>
+        <div class="monthly">Monthly</div>
+
+        <div class="progress-bar-type-1-warning">
+          <div class="icons3">
+            <div class="icons2">
+              <img class="info-circle" src="../assets/images/info-circle0.svg" />
+            </div>
+          </div>
+          <div class="info-indicator2">
+            <div class="information2">
+              <div class="_12-41-eur">12.41 EUR</div>
+            </div>
+            <div class="progress-indicatior2">
+              <div class="indicator2"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <!-- Monthly -->
-          <h2 class="limits-heading">Limits</h2>
-
-    <!-- Limits kaart -->
-    <section class="card limits-card">
-      <!-- Daily -->
-      <div class="limit-block">
-        <div class="limit-label">Daily</div>
-        <div class="limit-row">
-          <img src="img/warning-yellow.png"
-               alt="Daily warning"
-               class="limit-icon" />
-          <!-- data-max = sinu päevane limiit (muuda number enda järgi) -->
-          <span class="limit-amount" id="dailyAmount" data-max="20">
-            12.41 EUR
-          </span>
-        </div>
-        <div class="progressbar">
-          <div class="progress-fill progress-daily" id="dailyFill"></div>
-        </div>
-      </div>
-
-      <!-- Monthly -->
-      <div class="limit-block">
-        <div class="limit-label">Monthly</div>
-        <div class="limit-row">
-          <img src="img/warning-red.png"
-               alt="Monthly limit exceeded"
-               class="limit-icon" />
-          <!-- tekst: kulutatud / limiit -->
-          <span class="limit-amount" id="monthlyAmount">
-            45.79 / 50 EUR
-          </span>
-        </div>
-        <div class="progressbar">
-          <div class="progress-fill progress-monthly" id="monthlyFill"></div>
-        </div>
-      </div>
-    </section>
-
-  <!-- alumine navibar -->
-  <nav class="tabbar">
-    <button class="tab-button" data-tab="history">
-      <img src="img/history.png" alt="History" class="tab-icon-img" />
-      <span class="tab-label">History</span>
-    </button>
-
-    <button class="tab-button tab-active" data-tab="home">
-      <img src="img/home.png" alt="Home" class="tab-icon-img" />
-      <span class="tab-label">Home</span>
-    </button>
-
-    <button class="tab-button" data-tab="savings">
-      <img src="img/savings.png" alt="Savings" class="tab-icon-img" />
-      <span class="tab-label">Savings</span>
-    </button>
-  </nav>
-</div>
-
-<script src="script.js"></script>
-</body>
+    </div>
+  </body>
 </html>
