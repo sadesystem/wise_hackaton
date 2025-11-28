@@ -93,6 +93,35 @@
     <div class="savings2">Savings</div>
     <img class="home4" src="home_image.svg" />
   </div>
-  
+
+  <script>
+    async function loadGoalDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const id = Number(params.get("id"));
+
+      const response = await fetch("../data/jars.json");
+      const data = await response.json();
+
+      const jar = data.jars.find(j => j.id === id);
+      if (!jar) return;
+
+      // Update icon
+      document.querySelector(".div4").textContent =
+              jar.name.includes("art") ? "🎨" : "🚲";
+
+      // Update title
+      document.querySelector(".art-supplies").innerHTML =
+              jar.name.replace(" ", "<br>");
+
+      // Update current saved
+      document.querySelector("._0").textContent = `${jar.current}€`;
+
+      // Update bottom button text
+      const remaining = (jar.goal - jar.current).toFixed(2);
+      document.querySelector(".next").textContent = `${remaining}€ to go!`;
+    }
+
+    loadGoalDetails();
+  </script>
 </body>
 </html>
