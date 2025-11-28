@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        "./index.html",
+        "./jar_progress.html",
         "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {

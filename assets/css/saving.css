@@ -1,0 +1,135 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Frame */
+.app-frame {
+    width: 393px;
+    height: 852px;
+    margin: auto;
+    background: #ffffff;
+    border: 8px solid rgba(116,119,117,0.5);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+/* Header */
+.header {
+    margin-bottom: 20px;
+}
+.header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Goal Cards */
+.goal-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.goal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.goal-icon {
+    font-size: 36px;
+}
+
+.goal-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    flex-grow: 1;
+}
+
+.goal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.goal-target {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.goal-progress {
+    font-size: 30px;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background: #e5e7eb;
+    border-radius: 9999px;
+    height: 16px;
+    margin: 12px 0;
+    overflow: hidden;
+}
+.progress-fill {
+    background: #9fe870;
+    height: 100%;
+    border-radius: 9999px;
+}
+
+/* Stats */
+.goal-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+.saved {
+    color: #4b5563;
+}
+.need {
+    color: #73dd2e;
+    font-weight: 700;
+}
+
+/* Motivation Card */
+.motivation-card {
+    background: #f0fdf4;
+    border: 1.8px solid #bbf7d0;
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: auto;
+}
+.motivation-icon {
+    font-size: 30px;
+}
+.motivation-card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 8px 0;
+}
+.motivation-card p {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.nav-item {
+    font-size: 13px;
+    font-weight: 600;
+    color: #163300;
+}
