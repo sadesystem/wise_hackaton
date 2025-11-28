@@ -32,6 +32,8 @@ return (
                 <div className="text-white text-center text-lg">Target: £{selectedGoal.target}</div>
             </div>
 
+
+
             <div className="bg-white rounded-2xl p-6 shadow-md mb-4">
                 <div className="text-center mb-4">
                     <div className="text-5xl font-bold text-gray-800 mb-1">£{selectedGoal.saved.toFixed(2)}</div>
