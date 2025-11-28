@@ -14,6 +14,19 @@
         <h1>Saving Goals 🎯</h1>
     </header>
 
+    <!-- Add Goal Popup -->
+    <div class="add-goal-popup" id="addGoalPopup">
+        <div class="popup-content">
+            <h3>Add New Goal</h3>
+            <input type="text" id="goalName" placeholder="Goal name">
+            <input type="number" id="goalAmount" placeholder="Target amount">
+            <div class="popup-buttons">
+                <button id="cancelBtn">Cancel</button>
+                <button id="saveBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Goal Card 1 -->
     <section class="goal-card">
         <div class="goal-header">
@@ -51,6 +64,10 @@
             <span class="need">Need: 104.50€</span>
         </div>
     </section>
+
+    <div class="add-goal-btn">
+        <button id="addGoalBtn">+ Add Goal</button>
+    </div>
 
     <!-- Motivation Card -->
     <section class="motivation-card">
@@ -127,6 +144,89 @@
     }
 
     loadGoals();
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const addBtn = document.getElementById("addGoalBtn");
+        const popup = document.getElementById("addGoalPopup");
+        const cancelBtn = document.getElementById("cancelBtn");
+        const saveBtn = document.getElementById("saveBtn");
+
+        addBtn.addEventListener("click", () => {
+            popup.style.display = "flex"; // show popup
+        });
+
+        cancelBtn.addEventListener("click", () => {
+            popup.style.display = "none"; // hide popup
+        });
+
+        saveBtn.addEventListener("click", async () => {
+            const name = document.getElementById("goalName").value.trim();
+            const goalAmount = parseFloat(document.getElementById("goalAmount").value);
+
+            if (!name || isNaN(goalAmount)) {
+                alert("Please enter valid goal name and amount.");
+                return;
+            }
+
+            // Load existing jars
+            const response = await fetch("../data/jars.json");
+            const data = await response.json();
+
+            // Create new jar
+            const newId = data.jars.length ? Math.max(...data.jars.map(j => j.id)) + 1 : 1;
+            const newJar = {
+                id: newId,
+                name: name.toLowerCase(),
+                goal: goalAmount,
+                current: 0
+            };
+
+            data.jars.push(newJar);
+
+            // Update DOM immediately
+            const container = document.querySelector(".app-frame");
+            const percent = 0;
+
+            const card = document.createElement("section");
+            card.classList.add("goal-card");
+            card.style.cursor = "pointer";
+
+            card.innerHTML = `
+                <div class="goal-header">
+                    <div class="goal-icon">${name.toLowerCase().includes("art") ? "🎨" : "🚲"}</div>
+                    <div class="goal-info">
+                        <div class="goal-title">${name}</div>
+                        <div class="goal-target">Target: ${goalAmount}€</div>
+                    </div>
+                    <div class="goal-progress">${percent}%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width:${percent}%"></div>
+                </div>
+                <div class="goal-stats">
+                    <span class="saved">Saved: 0.00€</span>
+                    <span class="need">Need: ${goalAmount.toFixed(2)}€</span>
+                </div>
+            `;
+
+            card.addEventListener("click", () => {
+                window.location.href = `../jar_progress_bar/jar_progress.html?id=${newId}`;
+            });
+
+            container.insertBefore(card, document.querySelector(".motivation-card"));
+
+            // Hide popup and reset form
+            popup.style.display = "none";
+            document.getElementById("goalName").value = "";
+            document.getElementById("goalAmount").value = "";
+
+            // ⚠️ NOTE: We cannot actually save to jars.json from browser JS without a backend
+            // For a real app, you need a server-side endpoint to write the file
+            console.log("New jar added:", newJar);
+        });
+    });
+
 </script>
 </body>
 </html>
