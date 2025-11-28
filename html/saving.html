@@ -1,232 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Savings Goals</title>
-    <link rel="stylesheet" href="../assets/css/saving.css">
+
+    <!-- Saving Goals CSS -->
+    <link rel="stylesheet" href="../assets/css/saving.css" />
 </head>
+
 <body>
-<div class="app-frame">
+<div class="app-wrapper">
 
-    <!-- Header -->
-    <header class="header">
-        <h1>Saving Goals 🎯</h1>
-    </header>
+    <!-- Ühine telefoniraam -->
+    <div class="phone-frame">
 
-    <!-- Add Goal Popup -->
-    <div class="add-goal-popup" id="addGoalPopup">
-        <div class="popup-content">
-            <h3>Add New Goal</h3>
-            <input type="text" id="goalName" placeholder="Goal name">
-            <input type="number" id="goalAmount" placeholder="Target amount">
-            <div class="popup-buttons">
-                <button id="cancelBtn">Cancel</button>
-                <button id="saveBtn">Save</button>
-            </div>
+        <!-- STATUS BAR -->
+        <div class="device-device-frame-components-status-bar">
+            <div class="time">9:30</div>
+            <img class="right-icons" src="../assets/images/right-icons0.svg" />
+            <img class="camera-cutout" src="../assets/images/camera-cutout0.svg" />
         </div>
-    </div>
 
-    <!-- Goal Card 1 -->
-    <section class="goal-card">
-        <div class="goal-header">
-            <div class="goal-icon">🎨</div>
-            <div class="goal-info">
-                <div class="goal-title">Art Supplies</div>
-                <div class="goal-target">Target: 50€</div>
-            </div>
-            <div class="goal-progress">0%</div>
+        <!-- HOME BAR (iOS) -->
+        <div class="device-device-frame-components-navigation">
+            <div class="home"></div>
         </div>
-        <div class="progress-bar">
-            <div class="progress-fill" style="width:0%"></div>
-        </div>
-        <div class="goal-stats">
-            <span class="saved">Saved: 0.00€</span>
-            <span class="need">Need: 50.00€</span>
-        </div>
-    </section>
 
-    <!-- Goal Card 2 -->
-    <section class="goal-card">
-        <div class="goal-header">
-            <div class="goal-icon">🚲</div>
-            <div class="goal-info">
-                <div class="goal-title">New Bike</div>
-                <div class="goal-target">Target: 150€</div>
-            </div>
-            <div class="goal-progress">30%</div>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" style="width:30%"></div>
-        </div>
-        <div class="goal-stats">
-            <span class="saved">Saved: 45.50€</span>
-            <span class="need">Need: 104.50€</span>
-        </div>
-    </section>
+        <!-- SCROLLITAV PÕHISISU -->
+        <div class="saving-content">
 
-    <div class="add-goal-btn">
-        <button id="addGoalBtn">+ Add Goal</button>
-    </div>
+            <!-- Header -->
+            <header class="header">
+                <h1>Saving Goals 🎯</h1>
+            </header>
 
-    <!-- Motivation Card -->
-    <section class="motivation-card">
-        <div class="motivation-icon">🌟</div>
-        <h2>Keep saving!</h2>
-        <p>Every time you don’t spend, you’re closer to your goals. You’ve got this! 💪</p>
-    </section>
+            <!-- Add Goal Popup -->
+            <div class="add-goal-popup" id="addGoalPopup">
+                <div class="popup-content">
+                    <h3>Add New Goal</h3>
+                    <input type="text" id="goalName" placeholder="Goal name" />
+                    <input type="number" id="goalAmount" placeholder="Target amount" />
 
-    <!-- Bottom Navigation -->
-    <!-- navigation bar -->
-    <div class="bottom-nav">
-
-        <a href="../html/transactions.html" class="nav-item">
-            <img src="../assets/images/vector0.svg" class="nav-icon">
-            <div class="nav-label">History</div>
-        </a>
-
-        <a href="../html/main.html" class="nav-item">
-            <img src="../assets/images/home3.svg" class="nav-icon">
-            <div class="nav-label">Home</div>
-        </a>
-
-        <a href="../html/saving.html" class="nav-item">
-            <img src="../assets/images/savings0.svg" class="nav-icon">
-            <div class="nav-label">Savings</div>
-        </a>
-
-    </div>
-
-</div>
-
-<script>
-    async function loadGoals() {
-        const response = await fetch("../data/jars.json");
-        const data = await response.json();
-        const container = document.querySelector(".app-frame");
-
-        // Remove the existing static goal cards
-        document.querySelectorAll(".goal-card").forEach(card => card.remove());
-
-        data.jars.forEach(jar => {
-            const percent = ((jar.current / jar.goal) * 100).toFixed(0);
-            const need = (jar.goal - jar.current).toFixed(2);
-
-            const card = document.createElement("section");
-            card.classList.add("goal-card");
-            card.style.cursor = "pointer";
-
-            card.innerHTML = `
-            <div class="goal-header">
-                <div class="goal-icon">${jar.name.includes("art") ? "🎨" : "🚲"}</div>
-                <div class="goal-info">
-                    <div class="goal-title">${jar.name}</div>
-                    <div class="goal-target">Target: ${jar.goal}€</div>
-                </div>
-                <div class="goal-progress">${percent}%</div>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width:${percent}%"></div>
-            </div>
-            <div class="goal-stats">
-                <span class="saved">Saved: ${jar.current.toFixed(2)}€</span>
-                <span class="need">Need: ${need}€</span>
-            </div>
-        `;
-
-            // CLICK → go to goal details page
-            card.addEventListener("click", () => {
-                window.location.href = `../jar_progress_bar/jar_progress.html?id=${jar.id}`;
-            });
-
-            container.insertBefore(card, document.querySelector(".motivation-card"));
-        });
-    }
-
-    loadGoals();
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const addBtn = document.getElementById("addGoalBtn");
-        const popup = document.getElementById("addGoalPopup");
-        const cancelBtn = document.getElementById("cancelBtn");
-        const saveBtn = document.getElementById("saveBtn");
-
-        addBtn.addEventListener("click", () => {
-            popup.style.display = "flex"; // show popup
-        });
-
-        cancelBtn.addEventListener("click", () => {
-            popup.style.display = "none"; // hide popup
-        });
-
-        saveBtn.addEventListener("click", async () => {
-            const name = document.getElementById("goalName").value.trim();
-            const goalAmount = parseFloat(document.getElementById("goalAmount").value);
-
-            if (!name || isNaN(goalAmount)) {
-                alert("Please enter valid goal name and amount.");
-                return;
-            }
-
-            // Load existing jars
-            const response = await fetch("../data/jars.json");
-            const data = await response.json();
-
-            // Create new jar
-            const newId = data.jars.length ? Math.max(...data.jars.map(j => j.id)) + 1 : 1;
-            const newJar = {
-                id: newId,
-                name: name.toLowerCase(),
-                goal: goalAmount,
-                current: 0
-            };
-
-            data.jars.push(newJar);
-
-            // Update DOM immediately
-            const container = document.querySelector(".app-frame");
-            const percent = 0;
-
-            const card = document.createElement("section");
-            card.classList.add("goal-card");
-            card.style.cursor = "pointer";
-
-            card.innerHTML = `
-                <div class="goal-header">
-                    <div class="goal-icon">${name.toLowerCase().includes("art") ? "🎨" : "🚲"}</div>
-                    <div class="goal-info">
-                        <div class="goal-title">${name}</div>
-                        <div class="goal-target">Target: ${goalAmount}€</div>
+                    <div class="popup-buttons">
+                        <button id="cancelBtn">Cancel</button>
+                        <button id="saveBtn">Save</button>
                     </div>
-                    <div class="goal-progress">${percent}%</div>
+                </div>
+            </div>
+
+            <!-- STATIC GOAL CARDS REMOVED BY JS ON LOAD -->
+            <section class="goal-card">
+                <div class="goal-header">
+                    <div class="goal-icon">🎨</div>
+                    <div class="goal-info">
+                        <div class="goal-title">Art Supplies</div>
+                        <div class="goal-target">Target: 50€</div>
+                    </div>
+                    <div class="goal-progress">0%</div>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width:${percent}%"></div>
+                    <div class="progress-fill" style="width:0%"></div>
                 </div>
                 <div class="goal-stats">
                     <span class="saved">Saved: 0.00€</span>
-                    <span class="need">Need: ${goalAmount.toFixed(2)}€</span>
+                    <span class="need">Need: 50.00€</span>
                 </div>
-            `;
+            </section>
 
-            card.addEventListener("click", () => {
-                window.location.href = `../jar_progress_bar/jar_progress.html?id=${newId}`;
-            });
+            <!-- ADD GOAL BUTTON -->
+            <div class="add-goal-btn">
+                <button id="addGoalBtn">+ Add Goal</button>
+            </div>
 
-            container.insertBefore(card, document.querySelector(".motivation-card"));
+            <!-- Motivation Card -->
+            <section class="motivation-card">
+                <div class="motivation-icon">🌟</div>
+                <h2>Keep saving!</h2>
+                <p>Every time you don’t spend, you’re closer to your goals. You’ve got this! 💪</p>
+            </section>
 
-            // Hide popup and reset form
-            popup.style.display = "none";
-            document.getElementById("goalName").value = "";
-            document.getElementById("goalAmount").value = "";
+        </div> <!-- /saving-content -->
 
-            // ⚠️ NOTE: We cannot actually save to jars.json from browser JS without a backend
-            // For a real app, you need a server-side endpoint to write the file
-            console.log("New jar added:", newJar);
-        });
+        <!-- BOTTOM NAVIGATION -->
+        <div class="bottom-nav">
+            <a href="../html/transactions.html" class="nav-item">
+                <img src="../assets/images/vector0.svg" class="nav-icon" />
+                <div class="nav-label">History</div>
+            </a>
+
+            <a href="../html/main.html" class="nav-item">
+                <img src="../assets/images/home3.svg" class="nav-icon" />
+                <div class="nav-label">Home</div>
+            </a>
+
+            <a href="../html/saving.html" class="nav-item">
+                <img src="../assets/images/savings0.svg" class="nav-icon" />
+                <div class="nav-label">Savings</div>
+            </a>
+        </div>
+
+    </div> <!-- /phone-frame -->
+</div> <!-- /app-wrapper -->
+
+
+<script>
+  const STORAGE_KEY = "jarsData";
+
+  // loe jars kas localStorage'st või esmasel korral JSON failist
+  async function getJarsData() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+
+    // kui localStorage tühi → loe algandmed failist ja salvesta
+    const response = await fetch("../data/jars.json");
+    const data = await response.json();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return data;
+  }
+
+  function saveJarsData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function renderGoals(jars) {
+    const container = document.querySelector(".saving-content");
+
+    // eemalda olemasolevad goal-kaardid
+    container.querySelectorAll(".goal-card").forEach(card => card.remove());
+
+    jars.forEach(jar => {
+      const percent = ((jar.current / jar.goal) * 100).toFixed(0);
+      const need = (jar.goal - jar.current).toFixed(2);
+
+      const card = document.createElement("section");
+      card.classList.add("goal-card");
+      card.style.cursor = "pointer";
+
+      card.innerHTML = `
+        <div class="goal-header">
+          <div class="goal-icon">${jar.name.toLowerCase().includes("art") ? "🎨" : "🚲"}</div>
+          <div class="goal-info">
+            <div class="goal-title">${jar.name}</div>
+            <div class="goal-target">Target: ${jar.goal}€</div>
+          </div>
+          <div class="goal-progress">${percent}%</div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${percent}%"></div>
+        </div>
+        <div class="goal-stats">
+          <span class="saved">Saved: ${jar.current.toFixed(2)}€</span>
+          <span class="need">Need: ${need}€</span>
+        </div>
+      `;
+
+      card.addEventListener("click", () => {
+        window.location.href = `../jar_progress_bar/jar_progress.html?id=${jar.id}`;
+      });
+
+      // lisame uue kaardi enne motivation-kaarti
+      container.insertBefore(card, container.querySelector(".add-goal-btn"));
+    });
+  }
+
+  async function loadGoals() {
+    const data = await getJarsData();
+    renderGoals(data.jars);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const addBtn = document.getElementById("addGoalBtn");
+    const popup = document.getElementById("addGoalPopup");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const saveBtn = document.getElementById("saveBtn");
+
+    // lae olemasolevad goals (localStorage või JSON)
+    loadGoals();
+
+    addBtn.addEventListener("click", () => {
+      popup.style.display = "flex";
     });
 
+    cancelBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+
+    saveBtn.addEventListener("click", async () => {
+      const nameInput = document.getElementById("goalName");
+      const amountInput = document.getElementById("goalAmount");
+
+      const name = nameInput.value.trim();
+      const goalAmount = parseFloat(amountInput.value);
+
+      if (!name || isNaN(goalAmount)) {
+        alert("Please enter valid goal name and amount.");
+        return;
+      }
+
+      // loe olemasolevad jars'id localStorage'st
+      const data = await getJarsData();
+
+      // leia uus id
+      const newId = data.jars.length ? Math.max(...data.jars.map(j => j.id)) + 1 : 1;
+
+      const newJar = {
+        id: newId,
+        name: name.toLowerCase(),
+        goal: goalAmount,
+        current: 0
+      };
+
+      data.jars.push(newJar);
+      saveJarsData(data); // ⬅️ SALVESTA localStorage'i
+
+      // uuenda kuvatud goals (võiks renderdada uuesti kogu listi)
+      renderGoals(data.jars);
+
+      // peida popup + puhasta väljad
+      popup.style.display = "none";
+      nameInput.value = "";
+      amountInput.value = "";
+
+      console.log("New jar added:", newJar);
+    });
+  });
 </script>
+
+
 </body>
 </html>
