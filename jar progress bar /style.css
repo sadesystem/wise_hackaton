@@ -288,21 +288,19 @@
   color: var(--interactive-colours-interactive-primary, #163300);
   text-align: center;
   font-family: "Inter-SemiBold", sans-serif;
-  font-size: 12.782608032226562px;
+  font-size: 12.7826px;
   line-height: 23.43px;
   letter-spacing: 0.0125em;
   font-weight: 600;
   position: relative;
 }
 .vector {
-  width: 8.91%;
-  height: 4.11%;
+  width: 35px;
+  height: 35px;
   position: absolute;
-  right: 75.57%;
-  left: 15.52%;
-  bottom: 6.34%;
-  top: 89.55%;
-  overflow: visible;
+  left: 61px;       /* centers above the History text */
+  top: 760px;       /* hovers over the label */
+  pointer-events: none;
 }
 .savings {
   width: 44px;
