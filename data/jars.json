@@ -1,0 +1,17 @@
+{
+  "jars": [
+    {
+      "id": 1,
+      "name": "art supplies",
+      "goal": 50.0,
+      "current": 0.0
+    },
+    {
+      "id": 2,
+      "name": "new bike",
+      "goal": 104.5,
+      "current": 45.5,
+      "icon": "\uD83C\uDFAF"
+    }
+  ]
+}

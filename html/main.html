@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <title>Mobile App Mockup</title>
+  </head>
+  <body>
+    <div class="app-wrapper">
+
+      <!-- Your mockup container -->
+      <div class="main-screen">
+
+        <!-- Your full HTML content EXACTLY as you provided -->
+        <div
+          class="device-device-frame">
+          <div class="device-device-frame-components-status-bar">
+            <div class="time">9:30</div>
+            <img class="right-icons" src="../assets/images/right-icons0.svg" />
+            <img class="camera-cutout" src="../assets/images/camera-cutout0.svg" />
+          </div>
+
+        <div class="card-buttons">
+          <div class="frame-51">
+            <div class="frame-50"></div>
+          </div>
+        </div>
+
+        <div class="balance">45.84</div>
+
+        <div class="europe">
+          <img class="clip-path-group" src="../assets/images/clip-path-group0.svg" />
+        </div>
+
+        <div class="country-options">
+          <div class="gbp">EUR</div>
+        </div>
+
+        <div class="_3-d-avatars-26">
+          <img class="avatars-3-d-avatar-26" src="../assets/images/avatars-3-d-avatar-260.png" />
+        </div>
+
+        <div class="hi-bob">Hi, Bob !</div>
+        <div class="limits">Limits</div>
+
+        
+
+        <div class="card-buttons2"></div>
+
+        <div class="progress-bar-type-1-error">
+          <div class="icons">
+            <div class="icons2">
+              <img class="close-circle" src="../assets/images/close-circle0.svg" />
+            </div>
+          </div>
+          <div class="info-indicator">
+            <div class="information">
+              <div class="_45-79-50-eur">45.79 / 50 EUR</div>
+              <div class="status"></div>
+            </div>
+            <div class="progress-indicatior">
+              <div class="indicator"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="daily">Daily</div>
+        <div class="monthly">Monthly</div>
+
+        <div class="progress-bar-type-1-warning">
+          <div class="icons3">
+            <div class="icons2">
+              <img class="info-circle" src="../assets/images/info-circle0.svg" />
+            </div>
+          </div>
+          <div class="info-indicator2">
+            <div class="information2">
+              <div class="_12-41-eur">12.41 EUR</div>
+            </div>
+            <div class="progress-indicatior2">
+              <div class="indicator2"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- navigation bar -->
+        <div class="bottom-nav">
+
+          <a href="../html/transactions.html" class="nav-item">
+              <img src="../assets/images/vector0.svg" class="nav-icon">
+              <div class="nav-label">History</div>
+          </a>
+
+          <a href="../html/main.html" class="nav-item">
+              <img src="../assets/images/home3.svg" class="nav-icon">
+              <div class="nav-label">Home</div>
+          </a>
+
+          <a href="../html/saving.html" class="nav-item">
+              <img src="../assets/images/savings0.svg" class="nav-icon">
+              <div class="nav-label">Savings</div>
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+    </div>
+    <script>
+      fetch('../data/current_balance.json')
+              .then(response => response.json())
+              .then(data => {
+                const balanceElement = document.querySelector('.balance');
+                if (balanceElement) {
+                  balanceElement.textContent = `${data.balance}`;
+                }
+              })
+              .catch(error => console.error('Error loading balance:', error));
+    </script>
+
+  </body>
+</html>

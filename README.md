@@ -26,4 +26,6 @@ Account track: Youth Exploreriga tegeleme:
      - näeb mõlema lapse vaadet
      - kuni 5 last
    -  muudame wisei praeguse disaini põhjal uue disaini 
-5. Teeme live code share'i, Säde püüab saada VS code tööle 
+5. Teeme live code share'i, Säde püüab saada VS code tööle
+6. Flow:
+  - The parent log in 
