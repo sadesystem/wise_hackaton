@@ -22,7 +22,7 @@ export const LimitsView = ({
                 </div>
                 <div className="bg-gray-200 rounded-full h-4 mb-2">
                     <div
-                        className="bg-gradient-to-r from-green-400 to-blue-500 rounded-full h-4 transition-all duration-500"
+                        className="bg-[#320707] rounded-full h-4 transition-all duration-500"
                         style={{width: `${(weeklySpent / weeklyLimit) * 100}%`}}
                     />
                 </div>
@@ -45,7 +45,7 @@ export const LimitsView = ({
                 </div>
                 <div className="bg-gray-200 rounded-full h-4 mb-2">
                     <div
-                        className="bg-gradient-to-r from-purple-400 to-pink-500 rounded-full h-4 transition-all duration-500"
+                        className="bg-[#3A341C] rounded-full h-4 transition-all duration-500"
                         style={{width: `${(monthlySpent / monthlyLimit) * 100}%`}}
                     />
                 </div>

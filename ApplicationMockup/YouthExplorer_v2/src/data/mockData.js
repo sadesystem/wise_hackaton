@@ -6,9 +6,9 @@ export const mockData = {
     monthlySpent: 32.80,
 
     savingsGoals: [
-        { id: 1, name: 'New Bike', target: 150, saved: 45.50, emoji: '🚲', color: 'bg-emerald-500' },
-        { id: 2, name: 'Gaming Console', target: 300, saved: 0, emoji: '🎮', color: 'bg-teal-500' },
-        { id: 3, name: 'Art Supplies', target: 50, saved: 0, emoji: '🎨', color: 'bg-cyan-500' }
+        { id: 1, name: 'New Bike', target: 150, saved: 45.50, emoji: '🚲', color: 'bg-[#163300]' },
+        { id: 2, name: 'Gaming Console', target: 300, saved: 0, emoji: '🎮', color: 'bg-[#A0E1E1]' },
+        { id: 3, name: 'Art Supplies', target: 50, saved: 0, emoji: '🎨', color: 'bg-[#FFD7EF]' }
     ],
 
     recentTransactions: [

@@ -19,7 +19,7 @@ export const HistoryView = ({
                                     </div>
                                 </div>
                                 <div
-                                    className={`text-xl font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-gray-800'}`}>
+                                    className={`text-xl font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-red-800'}`}>
                                     {transaction.amount > 0 ? '+' : ''}£{Math.abs(transaction.amount).toFixed(2)}
                                 </div>
                             </div>

@@ -10,7 +10,7 @@ export const HomeView = ({
     return (
         <div className="flex flex-col h-full">
             {/* Balance Card */}
-            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl p-6 m-4 shadow-lg">
+            <div className="bg-[#9FE870] rounded-3xl p-6 m-4 shadow-lg">
                 <div className="text-white text-sm font-medium mb-2">Your Balance</div>
                 <div className="text-white text-5xl font-bold mb-4">£{balance.toFixed(2)}</div>
                 <div className="bg-white/20 backdrop-blur rounded-xl p-3">

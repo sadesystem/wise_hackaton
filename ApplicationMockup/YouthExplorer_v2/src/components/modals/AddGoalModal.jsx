@@ -8,12 +8,12 @@ export const AddGoalModal = ({ onClose, onSave }) => {
 
     const emojis = ['🚲', '🎮', '📱', '🎸', '⚽', '📚', '🎨', '🏀', '🎧', '⌚'];
     const colors = [
-        { name: 'Emerald', value: 'bg-emerald-500' },
-        { name: 'Teal', value: 'bg-teal-500' },
-        { name: 'Cyan', value: 'bg-cyan-500' },
-        { name: 'Sky', value: 'bg-sky-500' },
-        { name: 'Green', value: 'bg-green-500' },
-        { name: 'Lime', value: 'bg-lime-500' }
+        { name: 'Orange', value: 'bg-[#FFC091]' },
+        { name: 'Yellow', value: 'bg-[#FFEB69]' },
+        { name: 'Blue', value: 'bg-[#A0E1E1]' },
+        { name: 'Green', value: 'bg-[#9FE870]' },
+        { name: 'Pink', value: 'bg-[#FFD7EF]' },
+        { name: 'Forest', value: 'bg-[#163300]' }
     ];
 
     const handleSave = () => {
