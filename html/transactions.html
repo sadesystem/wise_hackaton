@@ -5,11 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- kindlasti täpselt need teed, kui history.html on kaustas html/ -->
+  <!-- Üldine stiilid -->
   <link rel="stylesheet" href="../assets/css/main.css" />
   <link rel="stylesheet" href="../assets/css/transactions.css" />
 
-  <!-- väike reset -->
+  <!-- Väike reset (sama mis teistel lehtedel) -->
   <style>
     a,
     button,
@@ -43,8 +43,11 @@
 </head>
 <body>
   <div class="app">
+
+    <!-- History ekraan (telefonikaart) -->
     <div class="transactions">
-      <!-- ülemine status bar -->
+
+      <!-- Ülemine status bar -->
       <div class="device-device-frame-components-status-bar">
         <div class="time">9:30</div>
         <img
@@ -59,174 +62,54 @@
         />
       </div>
 
-      <!-- home-indikaator -->
+      <!-- Alumine “home” indikaator -->
       <div class="device-device-frame-components-navigation">
         <div class="home"></div>
       </div>
 
-      <!-- sisu -->
+      <!-- Põhisisu -->
       <div class="transactions2">
+        <!-- Figma tühi frame, ei kasuta, aga võib jääda -->
         <div class="frame-103"></div>
 
-        <!-- pealkiri -->
+        <!-- Pealkiri -->
         <div class="h-1">
           <div class="history">History 🕰️</div>
         </div>
 
-        <!-- Today -->
-        <div class="frame-104">
-          <div class="today">Today</div>
-        </div>
+        <!-- Siia joonistab JS:
+             - Today / Yesterday / kuupäeva read
+             - iga kuupäeva alla tehingud -->
+        <div class="frame-105"></div>
 
-        <!-- tehingud + load more -->
-        <div class="frame-105">
-          <!-- 1 -->
-          <div class="transaction-buttons">
-            <div class="frame-62">
-              <div class="recipient">
-                <div class="icon-button">
-                  <div class="icon-and-alert">
-                    <img
-                      class="arrow-up"
-                      src="../assets/Figma_icons/arrow-up0.svg"
-                      alt="Sent"
-                    />
-                  </div>
-                </div>
-                <div class="frame-60">
-                  <div class="sarah-davies">Bob Williams</div>
-                  <div class="sent-2nd-sept-2022">Paid · Today</div>
-                </div>
-              </div>
-              <div class="money-sent">
-                <div class="_50-00-pln">28.27 EUR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2 -->
-          <div class="transaction-buttons">
-            <div class="frame-62">
-              <div class="recipient">
-                <div class="icon-button">
-                  <div class="icon-and-alert">
-                    <img
-                      class="plus"
-                      src="../assets/Figma_icons/plus0.svg"
-                      alt="Top up"
-                    />
-                  </div>
-                </div>
-                <div class="frame-60">
-                  <div class="sarah-davies">Bob Williams</div>
-                  <div class="sent-2nd-sept-2022">Paid · Today</div>
-                </div>
-              </div>
-              <div class="money-sent">
-                <div class="_50-00-pln">13.67 EUR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3 -->
-          <div class="transaction-buttons">
-            <div class="frame-62">
-              <div class="recipient">
-                <div class="icon-button">
-                  <div class="icon-and-alert">
-                    <img
-                      class="calendar"
-                      src="../assets/Figma_icons/calendar0.svg"
-                      alt="Scheduled"
-                    />
-                  </div>
-                </div>
-                <div class="frame-60">
-                  <div class="sarah-davies">Bob Williams</div>
-                  <div class="sent-2nd-sept-2022">Paid · Today</div>
-                </div>
-              </div>
-              <div class="money-sent">
-                <div class="_50-00-pln">2.01 EUR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 4 -->
-          <div class="transaction-buttons">
-            <div class="frame-62">
-              <div class="recipient">
-                <div class="icon-button">
-                  <div class="icon-and-alert">
-                    <img
-                      class="arrow-up2"
-                      src="../assets/images/union.svg"
-                      alt="Sent"
-                    />
-                  </div>
-                </div>
-                <div class="frame-60">
-                  <div class="sarah-davies">Marge Williams</div>
-                  <div class="sent-2nd-sept-2022">Sent · Today</div>
-                </div>
-              </div>
-              <div class="money-sent">
-                <div class="_50-00-pln">20.00 EUR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 5 -->
-          <div class="transaction-buttons">
-            <div class="frame-62">
-              <div class="recipient">
-                <div class="icon-button">
-                  <div class="icon-and-alert">
-                    <img
-                      class="plus2"
-                      src="../assets/images/frame-34.svg"
-                      alt="Top up"
-                    />
-                  </div>
-                </div>
-                <div class="frame-60">
-                  <div class="sarah-davies">Bob Williams</div>
-                  <div class="sent-2nd-sept-2022">Paid · Today</div>
-                </div>
-              </div>
-              <div class="money-sent">
-                <div class="_50-00-pln">7.76 EUR</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- LOAD MORE -->
-          <div class="chip-button">
-            <div class="load-more">Load more</div>
-          </div>
+        <!-- Load more nupp (JS kasutab seda) -->
+        <div class="chip-button" id="loadMoreBtn">
+          <div class="load-more">Load more</div>
         </div>
       </div>
     </div>
 
-    <!-- naviriba -->
+    <!-- Alumine naviriba -->
     <div class="bottom-nav">
+      <a href="transactions.html" class="nav-item">
+        <img src="../assets/images/vector0.svg" class="nav-icon" alt="History" />
+        <div class="nav-label">History</div>
+      </a>
 
-            <a href="transactions.html" class="nav-item">
-                <img src="../assets/images/vector0.svg" class="nav-icon">
-                <div class="nav-label">History</div>
-            </a>
+      <a href="index.html" class="nav-item">
+        <img src="../assets/images/home3.svg" class="nav-icon" alt="Home" />
+        <div class="nav-label">Home</div>
+      </a>
 
-            <a href="index.html" class="nav-item">
-                <img src="../assets/images/home3.svg" class="nav-icon">
-                <div class="nav-label">Home</div>
-            </a>
+      <a href="savings.html" class="nav-item">
+        <img src="../assets/images/savings0.svg" class="nav-icon" alt="Savings" />
+        <div class="nav-label">Savings</div>
+      </a>
+    </div>
 
-            <a href="savings.html" class="nav-item">
-                <img src="../assets/images/savings0.svg" class="nav-icon">
-                <div class="nav-label">Savings</div>
-            </a>
-
-          </div>
   </div>
+
+  <!-- History loogika: laadib batchid, lisab Today/Yesterday/kuupäevad jne -->
+  <script src="../js/transactions.js"></script>
 </body>
 </html>
