@@ -6,18 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./vars.css">
   <link rel="stylesheet" href="./style.css">
-
+  <title>Goal Jar Tree View</title>
   <style>
-    a,
-    button,
-    input,
-    select,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    * {
+    a, button, input, select, h1, h2, h3, h4, h5, * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -26,23 +17,9 @@
       background: none;
       -webkit-font-smoothing: antialiased;
     }
-
-    menu, ol, ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-    }
-
-    body {
-      background: #e5e5e5;
-    }
-
+    menu, ol, ul { list-style-type: none; margin: 0; padding: 0; }
+    html, body { height: 100%; margin: 0; }
+    body { background: #e5e5e5; }
     .center-shell {
       min-height: 100vh;
       display: flex;
@@ -50,7 +27,6 @@
       justify-content: center;
     }
   </style>
-  <title>Goal Jar Tree View</title>
 </head>
 <body>
 <div class="center-shell">
@@ -65,16 +41,16 @@
         <div class="home"></div>
       </div>
     </div>
+
+    <!-- Leaf image -->
     <img class="image-1" src="leaf_image_1.png" />
-    <div class="chip-button">
-      <div class="all">+5€</div>
-    </div>
-    <div class="chip-button2">
-      <div class="all2">+10€</div>
-    </div>
-    <div class="chip-button3">
-      <div class="all2">Custom</div>
-    </div>
+
+    <!-- Chip buttons -->
+    <div class="chip-button"><div class="all">+5€</div></div>
+    <div class="chip-button2"><div class="all2">+10€</div></div>
+    <div class="chip-button3"><div class="all2">Custom</div></div>
+
+    <!-- THE GOAL CARD STRUCTURE THAT WAS MISSING -->
     <div class="button">
       <div class="div">
         <div class="div2">
@@ -83,23 +59,23 @@
           </div>
           <div class="div5">
             <div class="div6">
-              <div class="art-supplies">
-                Art
-                <br />
-                Supplies
-              </div>
+              <div class="art-supplies">Loading...</div>
             </div>
             <div class="div7"></div>
-            <div class="div8">
-              <div class="_0">0€</div>
-            </div>
+          </div>
+          <div class="div8">
+            <div class="_0">0%</div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Motivation / primary button -->
     <div class="primary-button">
-      <div class="next">15€ to go!</div>
+      <div class="next">Keep going!</div>
     </div>
+
+    <!-- Bottom nav -->
     <div class="bottom-nav-icons">
       <div class="home2">History</div>
     </div>
@@ -110,5 +86,47 @@
     <img class="home4" src="home_image.svg" />
   </div>
 </div>
+
+<script>
+  async function loadGoalDetail() {
+    console.log("Script started");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const jarId = parseInt(urlParams.get('id'));
+
+    console.log("Jar ID from URL:", jarId);
+
+    if (!jarId) {
+      console.error("No jar ID provided in URL");
+      return;
+    }
+
+    try {
+      const response = await fetch("../data/jars.json");
+      const data = await response.json();
+      const jar = data.jars.find(j => j.id === jarId);
+
+      if (!jar) {
+        console.error("Jar not found with ID:", jarId);
+        return;
+      }
+
+      const percent = ((jar.current / jar.goal) * 100).toFixed(0);
+      const icon = jar.name.includes("art") ? "🎨" : "🚲";
+
+      // Now these elements exist!
+      document.querySelector('.div4').textContent = icon;
+      document.querySelector('.art-supplies').textContent = jar.name;
+      document.querySelector('._0').textContent = `${percent}%`;
+
+      console.log("Successfully updated goal display");
+
+    } catch (error) {
+      console.error("Error loading goal:", error);
+    }
+  }
+
+  loadGoalDetail();
+</script>
 </body>
 </html>
