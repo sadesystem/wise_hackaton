@@ -4,10 +4,12 @@
 }
 .goal-jar-tree-view {
   background: #ffffff;
+  width: 393px;  /* Add this line */
   height: 852px;
   position: relative;
   overflow: hidden;
 }
+
 .device-device-frame {
   background: var(--m3-white, #ffffff);
   border-radius: 18px;
