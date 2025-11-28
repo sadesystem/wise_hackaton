@@ -14,23 +14,20 @@
 
         <!-- Your full HTML content EXACTLY as you provided -->
         <div
-          class="device-device-frame"
-          style= "background: url(main-screen.png) center; background-size: cover; background-repeat: no-repeat;"
-        >
+          class="device-device-frame">
           <div class="device-device-frame-components-status-bar">
             <div class="time">9:30</div>
             <img class="right-icons" src="../assets/images/right-icons0.svg" />
             <img class="camera-cutout" src="../assets/images/camera-cutout0.svg" />
           </div>
 
-          
         <div class="card-buttons">
           <div class="frame-51">
             <div class="frame-50"></div>
           </div>
         </div>
 
-        <div class="_45-84">45.84</div>
+        <div class="balance">45.84</div>
 
         <div class="europe">
           <img class="clip-path-group" src="../assets/images/clip-path-group0.svg" />
@@ -38,7 +35,6 @@
 
         <div class="country-options">
           <div class="gbp">EUR</div>
-          <div class="british">Euro</div>
         </div>
 
         <div class="_3-d-avatars-26">
@@ -110,5 +106,18 @@
 
       </div>
     </div>
+    </div>
+    <script>
+      fetch('../data/current_balance.json')
+              .then(response => response.json())
+              .then(data => {
+                const balanceElement = document.querySelector('.balance');
+                if (balanceElement) {
+                  balanceElement.textContent = `${data.balance}`;
+                }
+              })
+              .catch(error => console.error('Error loading balance:', error));
+    </script>
+
   </body>
 </html>
