@@ -42,70 +42,76 @@
   <title>History</title>
 </head>
 <body>
-  <div class="app">
+  <div class="app-wrapper">
+    <div class="main-screen">
 
-    <!-- History ekraan (telefonikaart) -->
-    <div class="transactions">
 
-      <!-- Ülemine status bar -->
-      <div class="device-device-frame-components-status-bar">
-        <div class="time">9:30</div>
-        <img
-          class="right-icons"
-          src="../assets/Figma_icons/right-icons0.svg"
-          alt="Status icons"
-        />
-        <img
-          class="camera-cutout"
-          src="../assets/Figma_icons/camera-cutout0.svg"
-          alt=""
-        />
-      </div>
+      <!-- History ekraan (telefonikaart) -->
+      <div class="transactions">
 
-      <!-- Alumine “home” indikaator -->
-      <div class="device-device-frame-components-navigation">
-        <div class="home"></div>
-      </div>
-
-      <!-- Põhisisu -->
-      <div class="transactions2">
-        <!-- Figma tühi frame, ei kasuta, aga võib jääda -->
-        <div class="frame-103"></div>
-
-        <!-- Pealkiri -->
-        <div class="h-1">
-          <div class="history">History 🕰️</div>
+        <!-- Ülemine status bar -->
+        <div class="device-device-frame-components-status-bar">
+          <div class="time">9:30</div>
+          <img
+            class="right-icons"
+            src="../assets/images/right-icons0.svg"
+            alt="Status icons"
+          />
+          <img
+            class="camera-cutout"
+            src="../assets/images/camera-cutout0.svg"
+            alt=""
+          />
         </div>
 
-        <!-- Siia joonistab JS:
-             - Today / Yesterday / kuupäeva read
-             - iga kuupäeva alla tehingud -->
-        <div class="frame-105"></div>
+        <!-- Alumine “home” indikaator -->
+        <div class="device-device-frame-components-navigation">
+          <div class="home"></div>
+        </div>
 
-        <!-- Load more nupp (JS kasutab seda) -->
-        <div class="chip-button" id="loadMoreBtn">
-          <div class="load-more">Load more</div>
+        <!-- Põhisisu -->
+        <div class="transactions2">
+          <!-- Figma tühi frame, ei kasuta, aga võib jääda -->
+          <div class="frame-103"></div>
+
+          <!-- Pealkiri -->
+          <div class="h-1">
+            <div class="history">History 🕰️</div>
+          </div>
+
+          <!-- Siia joonistab JS:
+              - Today / Yesterday / kuupäeva read
+              - iga kuupäeva alla tehingud -->
+          <div class="frame-105"></div>
+
+          <!-- Load more nupp (JS kasutab seda) -->
+          <div class="chip-button" id="loadMoreBtn">
+            <div class="load-more">Load more</div>
+          </div>
         </div>
       </div>
+
+      <!-- Alumine naviriba -->
+      <div class="bottom-nav">
+        <a href="../html/transactions.html" class="nav-item">
+          <img src="../assets/images/vector0.svg" class="nav-icon" alt="History" />
+          <div class="nav-label">History</div>
+        </a>
+
+        <a href="../html/main.html" class="nav-item">
+          <img src="../assets/images/home3.svg" class="nav-icon" alt="Home" />
+          <div class="nav-label">Home</div>
+        </a>
+
+        <a href="../html/saving.html" class="nav-item">
+          <img src="../assets/images/savings0.svg" class="nav-icon" alt="Savings" />
+          <div class="nav-label">Savings</div>
+        </a>
+      </div>
+    
     </div>
 
-    <!-- Alumine naviriba -->
-    <div class="bottom-nav">
-      <a href="../html/transactions.html" class="nav-item">
-        <img src="../assets/images/vector0.svg" class="nav-icon" alt="History" />
-        <div class="nav-label">History</div>
-      </a>
 
-      <a href="../html/main.html" class="nav-item">
-        <img src="../assets/images/home3.svg" class="nav-icon" alt="Home" />
-        <div class="nav-label">Home</div>
-      </a>
-
-      <a href="../html/saving.html" class="nav-item">
-        <img src="../assets/images/savings0.svg" class="nav-icon" alt="Savings" />
-        <div class="nav-label">Savings</div>
-      </a>
-    </div>
 
   </div>
 

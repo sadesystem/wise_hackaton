@@ -288,3 +288,27 @@
   overflow: hidden;
   position: relative;  /* 👈 oluline, et bottom-nav ja transactions teaksid, kuhu end panna */
 }
+
+
+
+/* Phone container like your mockup */
+.app-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;  /* horizontally center the phone */
+  align-items: center;      /* vertically center the phone */
+  background: #f3f4f6;      /* optional, for page background */
+}
+
+.main-screen {
+  width: 393px;
+  height: 852px;
+  background: #fff;
+  border-radius: 32px; 
+  border: 8px solid rgba(116,119,117,0.5); /* THIS is the border you’re missing */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
