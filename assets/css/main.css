@@ -1,3 +1,12 @@
+body {
+  background: #e5e5e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+
 .main-screen,
 .main-screen * {
   box-sizing: border-box;
